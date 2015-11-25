@@ -1,52 +1,27 @@
 "*****************************************************************************
-"" NeoBundle core
+"" vim-plug core
 "*****************************************************************************
 
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-
-let g:vim_bootstrap_langs = "javascript,ruby,haskell,lisp,elixir,python,c,php,html,lua,ocaml,perl,go,erlang"
-let g:vim_bootstrap_editor = "vim"				" nvim or vim
-
-if !filereadable(neobundle_readme)
-  echo "Installing NeoBundle..."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim/
-  let g:not_finsh_neobundle = "yes"
-
-  " Run shell script if exist on custom select language 
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/haskell/haskell.sh | bash -s stable
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
 "*****************************************************************************
-"" NeoBundle install packages
+"" Plug install packages
 "*****************************************************************************
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'vim-scripts/grep.vim'
-NeoBundle 'vim-scripts/CSApprox'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'Shougo/vimproc.vim', {
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bling/vim-airline'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/CSApprox'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
       \     'cygwin' : 'make -f make_cygwin.mak',
@@ -56,114 +31,96 @@ NeoBundle 'Shougo/vimproc.vim', {
       \ }
 
 "" Vim-Session
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-session'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 
-if v:version >= 703
-  NeoBundle 'Shougo/vimshell.vim'
-endif
+" vim-shell
+Plug 'Shougo/vimshell.vim'
 
-if v:version >= 704
-  "" Snippets
-  NeoBundle 'SirVer/ultisnips'
-  NeoBundle 'FelikZ/ctrlp-py-matcher'
-endif
+"" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'FelikZ/ctrlp-py-matcher'
 
-NeoBundle 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 "" Color
-NeoBundle 'tomasr/molokai'
-NeoBundle 'romainl/Apprentice'
-
-"" Vim-Bootstrap Updater
-NeoBundle 'sherzberg/vim-bootstrap-updater'
-
-"" Custom bundles
-
-NeoBundle 'vim-perl/vim-perl'
-NeoBundle 'c9s/perlomni.vim'
+Plug 'tomasr/molokai'
+Plug 'romainl/Apprentice'
+Plug 'morhetz/gruvbox'
 
 
-NeoBundle 'vim-scripts/c.vim'
+"" Custom Plugins
+
+Plug 'vim-perl/vim-perl'
+Plug 'c9s/perlomni.vim'
 
 
-NeoBundle "jimenezrick/vimerl"
+Plug 'vim-scripts/c.vim'
 
 
-NeoBundle "scrooloose/syntastic"
-NeoBundle "majutsushi/tagbar"
-
-NeoBundle 'xolox/vim-lua-ftplugin'
-NeoBundle 'xolox/vim-lua-inspect'
+Plug 'jimenezrick/vimerl'
 
 
-"" Lisp Bundle
-NeoBundle 'vim-scripts/slimv.vim'
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
+
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'xolox/vim-lua-inspect'
 
 
-"" Javascript Bundle
-NeoBundle "scrooloose/syntastic"
+"" Lisp Plugins
+Plug 'vim-scripts/slimv.vim'
 
 
-"" HTML Bundle
-NeoBundle 'amirh/HTML-AutoCloseTag'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'mattn/emmet-vim'
+"" Javascript Plugins
+Plug 'scrooloose/syntastic'
 
 
-NeoBundle "def-lkb/ocp-indent-vim"
+"" HTML Plugins
+Plug 'amirh/HTML-AutoCloseTag'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'tpope/vim-haml'
+Plug 'mattn/emmet-vim'
+Plug 'def-lkb/ocp-indent-vim'
 
 
-"" Python Bundle
-NeoBundle "davidhalter/jedi-vim"
-NeoBundle "scrooloose/syntastic"
-NeoBundle "majutsushi/tagbar"
-NeoBundle "Yggdroot/indentLine"
+"" Python Plugins
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'Yggdroot/indentLine'
 
 
-NeoBundle "eagletmt/neco-ghc"
-NeoBundle "dag/vim2hs"
-NeoBundle "pbrisbin/vim-syntax-shakespeare"
+Plug 'eagletmt/neco-ghc'
+Plug 'dag/vim2hs'
+Plug 'pbrisbin/vim-syntax-shakespeare'
+Plug 'elixir-lang/vim-elixir'
+Plug 'carlosgaldino/elixir-snippets'
 
 
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'carlosgaldino/elixir-snippets'
+" Go Plugins
+Plug 'majutsushi/tagbar'
+Plug 'fatih/vim-go'
 
 
-"" Go Lang Bundle
-NeoBundle "majutsushi/tagbar"
-NeoBundle "fatih/vim-go"
+" PHP Plugins
+Plug 'arnaud-lb/vim-php-namespace'
 
 
-"" PHP Bundle
-NeoBundle 'arnaud-lb/vim-php-namespace'
+" Ruby Plugins
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-projectionist'
+Plug 'thoughtbot/vim-rspec'
+Plug 'majutsushi/tagbar'
+Plug 'ecomba/vim-ruby-refactoring'
 
-
-"" Ruby Bundle
-NeoBundle "tpope/vim-rails"
-NeoBundle "tpope/vim-rake"
-NeoBundle "tpope/vim-projectionist"
-NeoBundle "thoughtbot/vim-rspec"
-NeoBundle "majutsushi/tagbar"
-NeoBundle "ecomba/vim-ruby-refactoring"
-
-
-
-"" Include user's extra bundle
-if filereadable(expand("~/.vimrc.local.bundles"))
-  source ~/.vimrc.local.bundles
-endif
-
-call neobundle#end()
+" Add plugins to &runtimepath
+call plug#end()
 
 " Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 "*****************************************************************************
 "" Basic Setup
@@ -224,10 +181,7 @@ syntax on					" Enable syntax highlighting
 set ruler					" Enable the ruler
 set number					" enable line numbers
 
-let no_buffers_menu=1
-if !exists('g:not_finsh_neobundle')
-  colorscheme molokai
-endif
+colorscheme molokai			" set molokai as the default colorscheme.
 
 " molokai theme settings
 let g:molokai_original = 1
@@ -326,13 +280,6 @@ let Grep_Skip_Dirs = '.git node_modules'
 " vimshell.vim
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
-
-" terminal emulation
-if g:vim_bootstrap_editor == 'nvim'
-  nnoremap <silent> <leader>sh :terminal<CR>
-else
-  nnoremap <silent> <leader>sh :VimShellCreate<CR>
-endif
 
 "*****************************************************************************
 "" Functions
@@ -489,7 +436,6 @@ noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=lin
 "" Custom configs
 
 
-
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
@@ -504,11 +450,7 @@ nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 
-
-
 let g:javascript_enable_domhtmlcss = 1
-
-
 
 
 " Add Merlin to rtp
@@ -593,9 +535,6 @@ augroup FileType go
   au FileType go nmap <leader>gt <Plug>(go-test)
 augroup END
 
-
-
-
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
@@ -637,14 +576,6 @@ vnoremap <leader>rrlv :RRenameLocalVariable<cr>
 vnoremap <leader>rriv :RRenameInstanceVariable<cr>
 vnoremap <leader>rem  :RExtractMethod<cr>
 
-
-
-"" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
-
 "*****************************************************************************
 "" Convenience variables
 "*****************************************************************************
@@ -684,5 +615,4 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
-
-
+:endif
