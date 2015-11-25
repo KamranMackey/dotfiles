@@ -140,7 +140,7 @@ colors() {
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-# # launch screenfetch on terminal open (if it's installed).
+# # launch screenfetch on terminal launch (if it's installed).
 # # screenfetch displays various system details such as the
 # # CPU, how much RAM is in use, the number of packages, the
 # # shell name and version number, and other small things.
@@ -149,3 +149,6 @@ colors() {
 # # change the $TERM variable to be xterm-256color
 # # since we want the full 256 color palette.
 export TERM=xterm-256color
+
+# set vim as the default editor.
+export EDITOR='vim'
