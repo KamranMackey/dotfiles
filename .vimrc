@@ -30,36 +30,33 @@ Plug 'Shougo/vimproc.vim', {
       \    },
       \ }
 
-"" Vim-Session
+" Vim-Session
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 " vim-shell
 Plug 'Shougo/vimshell.vim'
 
-"" Snippets
+" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'FelikZ/ctrlp-py-matcher'
 
 Plug 'honza/vim-snippets'
 
-"" Color
+" Colorschemes
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
 
-
-"" Custom Plugins
+" Custom Plugins
+Plug 'Shougo/neocomplete.vim'
 
 Plug 'vim-perl/vim-perl'
 Plug 'c9s/perlomni.vim'
 
-
 Plug 'vim-scripts/c.vim'
 
-
 Plug 'jimenezrick/vimerl'
-
 
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
@@ -67,16 +64,13 @@ Plug 'majutsushi/tagbar'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-lua-inspect'
 
-
-"" Lisp Plugins
+" Lisp Plugins
 Plug 'vim-scripts/slimv.vim'
 
-
-"" Javascript Plugins
+" JavaScript Plugins
 Plug 'scrooloose/syntastic'
 
-
-"" HTML Plugins
+" HTML Plugins
 Plug 'amirh/HTML-AutoCloseTag'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
@@ -84,13 +78,11 @@ Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 Plug 'def-lkb/ocp-indent-vim'
 
-
-"" Python Plugins
+" Python Plugins
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
-
 
 Plug 'eagletmt/neco-ghc'
 Plug 'dag/vim2hs'
@@ -98,15 +90,12 @@ Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'elixir-lang/vim-elixir'
 Plug 'carlosgaldino/elixir-snippets'
 
-
 " Go Plugins
 Plug 'majutsushi/tagbar'
 Plug 'fatih/vim-go'
 
-
 " PHP Plugins
 Plug 'arnaud-lb/vim-php-namespace'
-
 
 " Ruby Plugins
 Plug 'tpope/vim-rails'
@@ -179,12 +168,14 @@ set mousehide               " Hide the mouse cursor while typing
 "*****************************************************************************
 syntax on					" Enable syntax highlighting
 set ruler					" Enable the ruler
-set number					" enable line numbers
+set number					" Enable line numbering
 
-colorscheme molokai			" set molokai as the default colorscheme.
-
-" molokai theme settings
-let g:molokai_original = 1
+colorscheme gruvbox
+set background=dark
+let g:gruvbox_italicize_comments = 1
+let g:gruvbox_contrast_light = "hard"
+let g:airline#extensions#tabline#enabled = 1
+let g:indentLine_char = '┆'
 
 set mousemodel=popup
 set t_Co=256
@@ -270,6 +261,78 @@ noremap <F3> :NERDTreeToggle<CR>
 " when vim/gvim opens.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
