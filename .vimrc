@@ -151,7 +151,7 @@ set noswapfile
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/bin/bash
+set shell=/bin/bash			" set bash as the default shelll.
 
 " session management
 let g:session_directory = "~/.vim/session"
@@ -174,6 +174,7 @@ colorscheme gruvbox
 set background=dark
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_contrast_light = "hard"
+let g:airline#extensions#tabline#enabled = 1
 let g:indentLine_char = '┆'
 
 set mousemodel=popup
@@ -298,7 +299,7 @@ function! s:my_cr_function()
   "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
