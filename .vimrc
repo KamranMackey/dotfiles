@@ -151,7 +151,7 @@ set noswapfile
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/bin/bash			" set bash as the default shelll.
+set shell=/bin/bash			" set bash as the default shell.
 
 " session management
 let g:session_directory = "~/.vim/session"
