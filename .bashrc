@@ -155,5 +155,5 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 # Arch Linux only aliases
-alias sysupdate="sudo pacman -Syu"			# refresh the repos and do a system update if updates are available
+alias sysupdate="sudo pacman -Syu"				# refresh the repos and do a system update if updates are available
 alias repo-refresh="sudo pacman -Syy"			# refresh the repos only
