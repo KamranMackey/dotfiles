@@ -160,7 +160,7 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-" mouse settings
+" Mouse settings
 set mouse=a                 				" Automatically enable mouse usage.
 set mousehide               				" Hide the mouse cursor while typing.
 
