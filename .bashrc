@@ -1,3 +1,7 @@
+#
+# ~/.bashrc
+#
+
 if [[ $- != *i* ]] ; then
 	# Shell is non-interactive.  Be done now!
 	return
@@ -150,14 +154,13 @@ colors() {
 # # since we want the full 256 color palette.
 export TERM=xterm-256color
 
-# set vim as the default editor.
+# set vim as the default editor (if installed).
 export EDITOR="vim"
 export VISUAL="vim"
 
 # Arch Linux only aliases
-alias sysupdate="sudo pacman -Syyu"	# refresh the repos and do a system update if updates are available
-alias repo-refresh="sudo pacman -Syy"	# refresh the repos only
-alias install="sudo pacman -S"		# install packages
-alias remove="sudo pacman -Rns"		# remove packages, their config files and unneeded dependencies.
-
-
+alias sysupdate="sudo pacman -Syyu"				# refresh the repos and do a system update if updates are available
+alias repo-refresh="sudo pacman -Syy"			# refresh the repos only
+alias install="sudo pacman -S"					# install packages
+alias remove="sudo pacman -Rns"					# remove packages, their config files and unneeded dependencies.
+alias aur-install="yaourt -S"					# install packages from the AUR.

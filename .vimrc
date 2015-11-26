@@ -3,12 +3,12 @@
 "*****************************************************************************
 
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+  set nocompatible               				" Be iMproved
 
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')				" Begin vim-plug initalization phase.
 
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -47,6 +47,7 @@ Plug 'honza/vim-snippets'
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 
 " Custom Plugins
 Plug 'Shougo/neocomplete.vim'
@@ -106,7 +107,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ecomba/vim-ruby-refactoring'
 
 " Add plugins to &runtimepath
-call plug#end()
+call plug#end()								" End vim-plug initalization phase.
 
 " Required:
 filetype plugin indent on
@@ -151,7 +152,7 @@ set noswapfile
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/bin/bash			" set bash as the default shell.
+set shell=/bin/bash							" Set bash as the default shell.
 
 " session management
 let g:session_directory = "~/.vim/session"
@@ -160,27 +161,31 @@ let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
 " mouse settings
-set mouse=a                 " Automatically enable mouse usage
-set mousehide               " Hide the mouse cursor while typing
+set mouse=a                 				" Automatically enable mouse usage.
+set mousehide               				" Hide the mouse cursor while typing.
 
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
-syntax on					" Enable syntax highlighting
-set ruler					" Enable the ruler
-set number					" Enable line numbering
+syntax on									" Enable syntax highlighting.
+set ruler									" Enable the ruler.
+set number									" Enable line numbering.
 
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_italicize_comments = 1
+colorscheme dracula							" Make dracula the default colorscheme.
+set background=dark							" Assume a dark background.
+let g:gruvbox_italicize_comments = 1 		" Italicize comments when using the gruvbox colorscheme.
 let g:gruvbox_contrast_light = "hard"
-let g:airline#extensions#tabline#enabled = 1
-let g:indentLine_char = '┆'
+let g:indentLine_char = '┆'					" Customize the indentLine character.
 
 set mousemodel=popup
 set t_Co=256
 set cursorline
 set guioptions=egmrti
+
+" Change the font to Source Code Pro for Powerline.
+" Highly recommend installing this font, as it's awesome
+" for programming, and it makes vim-powerline look really
+" fancy.
 set gfn=Source\ Code\ Pro\ for\ Powerline\ 10
 
 if has("gui_running")
