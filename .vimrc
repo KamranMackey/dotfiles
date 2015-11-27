@@ -48,6 +48,7 @@ Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
 Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'chriskempson/base16-vim', {'rtp': 'vim/'}
 
 " Custom Plugins
 Plug 'Shougo/neocomplete.vim'
@@ -160,7 +161,7 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-" Mouse settings
+" mouse settings
 set mouse=a                 				" Automatically enable mouse usage.
 set mousehide               				" Hide the mouse cursor while typing.
 
@@ -171,7 +172,7 @@ syntax on									" Enable syntax highlighting.
 set ruler									" Enable the ruler.
 set number									" Enable line numbering.
 
-colorscheme dracula							" Make dracula the default colorscheme.
+colorscheme gruvbox							" Make gruvbox the default colorscheme.
 set background=dark							" Assume a dark background.
 let g:gruvbox_italicize_comments = 1 		" Italicize comments when using the gruvbox colorscheme.
 let g:gruvbox_contrast_light = "hard"
@@ -182,11 +183,8 @@ set t_Co=256
 set cursorline
 set guioptions=egmrti
 
-" Change the font to Source Code Pro for Powerline.
-" Highly recommend installing this font, as it's awesome
-" for programming, and it makes vim-powerline look really
-" fancy.
-set gfn=Source\ Code\ Pro\ for\ Powerline\ 10
+" Change the font to Hack Regular.
+set gfn=Hack\ Regular\ 10
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
