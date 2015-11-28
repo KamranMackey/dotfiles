@@ -8,7 +8,7 @@ if has('vim_starting')
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-call plug#begin('$XDG_CONFIG_HOME/vim/plugged')				" Begin vim-plug initalization phase.
+call plug#begin('$XDG_CONFIG_HOME/vim/plugged')			" Begin vim-plug initalization phase.
 
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -108,7 +108,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ecomba/vim-ruby-refactoring'
 
 " Add plugins to &runtimepath
-call plug#end()								" End vim-plug initalization phase.
+call plug#end()							" End vim-plug initalization phase.
 
 " Required:
 filetype plugin indent on
@@ -157,7 +157,7 @@ set noswapfile
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/bin/bash							" Set bash as the default shell.
+set shell=/bin/bash					" Set bash as the default shell.
 
 " session management
 let g:session_directory = "/home/kamran/local/vim/session"
@@ -172,15 +172,15 @@ set mousehide               				" Hide the mouse cursor while typing.
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
-syntax on									" Enable syntax highlighting.
-set ruler									" Enable the ruler.
-set number									" Enable line numbering.
+syntax on						" Enable syntax highlighting.
+set ruler						" Enable the ruler.
+set number						" Enable line numbering.
 
-colorscheme gruvbox							" Make gruvbox the default colorscheme.
-set background=dark							" Assume a dark background.
-let g:gruvbox_italicize_comments = 1 		" Italicize comments when using the gruvbox colorscheme.
+colorscheme gruvbox					" Make gruvbox the default colorscheme.
+set background=dark					" Assume a dark background.
+let g:gruvbox_italicize_comments = 1 			" Italicize comments when using the gruvbox colorscheme.
 let g:gruvbox_contrast_light = "hard"
-let g:indentLine_char = '┆'					" Customize the indentLine character.
+let g:indentLine_char = '┆'				" Customize the indentLine character.
 
 set mousemodel=popup
 set t_Co=256
