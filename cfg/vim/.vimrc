@@ -157,7 +157,7 @@ set noswapfile
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/bin/bash					" Set bash as the default shell.
+set shell=/usr/bin/zsh					" Set zsh as the default shell.
 
 " session management
 let g:session_directory = "/home/kamran/local/vim/session"
