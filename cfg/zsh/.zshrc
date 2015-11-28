@@ -76,7 +76,7 @@ alias remove="sudo pacman -Rns"			# remove packages, their config files and unne
 alias aur-install="yaourt -S"			# install packages from the AUR.
 
 # Playlist handler alias
-alias playlisthandler="~/.local/bin/playlisthandler"
+alias playlisthandler="$HOME/local/bin/playlisthandler"
 
 # zsh manpage alias
 alias help="man zsh"
