@@ -2,8 +2,6 @@
 # Kamran's zsh configuration
 #
 
-
-
 # xterm hack for some terminals to support 256 colors
 if [ "$TERM" = "xterm" ]; then
   if [ -e /usr/share/terminfo/x/xterm-256color ]; then
@@ -12,7 +10,6 @@ if [ "$TERM" = "xterm" ]; then
     export TERM='xterm-color'
   fi
 fi
-
 
 # useful aliases
 alias cp="cp -i"			# confirm before overwriting something
