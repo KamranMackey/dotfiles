@@ -129,9 +129,9 @@ set backspace=indent,eol,start
 set viminfo+=n$XDG_CONFIG_HOME/vim/.viminfo
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=4
+set tabstop=8
 set softtabstop=0
-set shiftwidth=4
+set shiftwidth=8
 set expandtab
 
 "" Map leader to ,
