@@ -8,7 +8,7 @@ if has('vim_starting')
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-call plug#begin('~/.vim/plugged')				" Begin vim-plug initalization phase.
+call plug#begin('$XDG_CONFIG_HOME/vim/plugged')				" Begin vim-plug initalization phase.
 
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -124,6 +124,10 @@ set fileencodings=utf-8
 "" Fix backspace indent
 set backspace=indent,eol,start
 
+"" Change the viminfo location to be in
+"" $XDG_CONFIG_HOME.
+set viminfo+=n$XDG_CONFIG_HOME/vim/.viminfo
+
 "" Tabs. May be overriten by autocmd rules
 set tabstop=4
 set softtabstop=0
@@ -156,7 +160,7 @@ set showcmd
 set shell=/bin/bash							" Set bash as the default shell.
 
 " session management
-let g:session_directory = "~/.vim/session"
+let g:session_directory = "/home/kamran/local/vim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
@@ -279,8 +283,8 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ 'vimshell' : $XDG_CONFIG_HOME.'/vim/.vimshell_hist',
+    \ 'scheme' : $XDG_CONFIG_HOME.'/vim/.gosh_completions'
         \ }
 
 " Define keyword.
