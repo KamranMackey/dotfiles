@@ -51,7 +51,6 @@ alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
 
-
 # Find out how many colors the terminal is capable of putting out.
 # Color-related settings _must_ use this if they don't want to blow up on less
 # endowed terminals.
