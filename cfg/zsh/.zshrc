@@ -2,6 +2,18 @@
 # Kamran's zsh configuration
 #
 
+
+
+# xterm hack for some terminals to support 256 colors
+if [ "$TERM" = "xterm" ]; then
+  if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+    export TERM='xterm-256color'
+  else
+    export TERM='xterm-color'
+  fi
+fi
+
+
 # useful aliases
 alias cp="cp -i"			# confirm before overwriting something
 alias df='df -h'			# human-readable sizes
@@ -69,10 +81,6 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 # shell name and version number, and other small things.
 $HOME/local/bin/screenfetch-dev
 
-# change the $TERM variable to be xterm-256color
-# since we want the full 256 color palette.
-export TERM=xterm-256color
-
 # set vim as the default editor (if installed).
 export EDITOR="vim"
 export VISUAL="vim"
@@ -85,7 +93,7 @@ alias remove="sudo pacman -Rns"		# remove packages, their config files and unnee
 alias aur-install="yaourt -S"		# install packages from the AUR.
 
 # Playlist handler alias
-alias playlisthandler="~/.local/bin/playlisthandler"
+alias playlisthandler="$HOME/local/bin/playlisthandler"
 
 # zsh manpage alias
 alias help="man zsh"
