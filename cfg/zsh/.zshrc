@@ -3,8 +3,8 @@
 #
 
 # useful aliases
-alias cp="cp -i"					# confirm before overwriting something
-alias df='df -h'					# human-readable sizes
+alias cp="cp -i"				# confirm before overwriting something
+alias df='df -h'				# human-readable sizes
 alias free='free -m'				# show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
@@ -16,7 +16,7 @@ SAVEHIST=1000000
 setopt appendhistory				# Don't overwrite history.
 
 # General settings
-setopt no_beep 						# Don't ever, ever, beep at me.
+setopt no_beep 					# Don't ever, ever, beep at me.
 setopt extendedglob
 setopt nomatch
 setopt notify
@@ -70,7 +70,7 @@ export VISUAL="vim"
 
 # Arch Linux only aliases
 alias sysupdate="sudo pacman -Syyu"		# refresh the repos and do a system update if updates are available
-alias repo-refresh="sudo pacman -Syy"	# refresh the repos only
+alias repo-refresh="sudo pacman -Syy"	        # refresh the repos only
 alias install="sudo pacman -S"			# install packages
 alias remove="sudo pacman -Rns"			# remove packages, their config files and unneeded dependencies.
 alias aur-install="yaourt -S"			# install packages from the AUR.
