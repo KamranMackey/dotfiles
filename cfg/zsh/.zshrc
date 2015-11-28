@@ -3,8 +3,8 @@
 #
 
 # useful aliases
-alias cp="cp -i"				# confirm before overwriting something
-alias df='df -h'				# human-readable sizes
+alias cp="cp -i"					# confirm before overwriting something
+alias df='df -h'					# human-readable sizes
 alias free='free -m'				# show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
@@ -16,7 +16,7 @@ SAVEHIST=1000000
 setopt appendhistory				# Don't overwrite history.
 
 # General settings
-setopt no_beep 					# Don't ever, ever, beep at me.
+setopt no_beep 						# Don't ever, ever, beep at me.
 setopt extendedglob
 setopt nomatch
 setopt notify
@@ -33,6 +33,15 @@ compinit
 # enable the colors module.
 autoload -U colors
 colors
+
+# set some tools such as grep
+# to automatically use colors
+# in their output.
+alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+
 
 # Find out how many colors the terminal is capable of putting out.
 # Color-related settings _must_ use this if they don't want to blow up on less
@@ -70,13 +79,13 @@ export VISUAL="vim"
 
 # Arch Linux only aliases
 alias sysupdate="sudo pacman -Syyu"		# refresh the repos and do a system update if updates are available
-alias repo-refresh="sudo pacman -Syy"	        # refresh the repos only
+alias repo-refresh="sudo pacman -Syy"	# refresh the repos only
 alias install="sudo pacman -S"			# install packages
 alias remove="sudo pacman -Rns"			# remove packages, their config files and unneeded dependencies.
 alias aur-install="yaourt -S"			# install packages from the AUR.
 
 # Playlist handler alias
-alias playlisthandler="$HOME/local/bin/playlisthandler"
+alias playlisthandler="~/.local/bin/playlisthandler"
 
 # zsh manpage alias
 alias help="man zsh"
