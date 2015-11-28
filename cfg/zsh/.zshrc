@@ -97,6 +97,10 @@ alias help="man zsh"
 # zsh --version alias
 alias version="zsh --version"
 
+# Create an alias so that way WeeChat
+# uses $XDG_CONFIG_HOME/weechat directory.
+alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
+
 # change the vim alias to use the config
 # file located in $XDG_CONFIG_HOME.
 alias vim="vim -u $XDG_CONFIG_HOME/vim/.vimrc"
