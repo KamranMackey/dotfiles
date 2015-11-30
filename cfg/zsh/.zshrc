@@ -20,8 +20,8 @@ alias more=less
 
 # history settings
 HISTFILE=$ZDOTDIR/.histfile
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=1000000			# Make the history go up to 1 million lines
+SAVEHIST=1000000			# Same for this.
 setopt appendhistory			# Don't overwrite history.
 
 # General settings
