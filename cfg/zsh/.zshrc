@@ -12,32 +12,35 @@ if [ "$TERM" = "xterm" ]; then
 fi
 
 # useful aliases
-alias cp="cp -i"		# confirm before overwriting something
-alias df='df -h'		# human-readable sizes
-alias free='free -m'		# show sizes in MB
+alias cp="cp -i"			# confirm before overwriting something
+alias df='df -h'			# human-readable sizes
+alias free='free -m'			# show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
 # history settings
 HISTFILE=$ZDOTDIR/.histfile
-HISTSIZE=1000000		# Make the history go up to 1 million lines
-SAVEHIST=1000000		# Same for this.
-setopt appendhistory		# Don't overwrite history.
+HISTSIZE=1000000			# Make the history go up to 1 million lines
+SAVEHIST=1000000			# Same for this.
+setopt appendhistory			# Don't overwrite history.
+setopt extended_history			# put timestamps in the history.
 
 # General settings
-setopt autocd			# automatically cd into directories if I only type the directory name
-setopt no_beep			# don't ever, ever, beep at me.
-setopt extendedglob
+setopt autocd				# automatically cd into directories if I only type the directory name
+setopt no_beep				# don't ever, ever, beep at me.
+setopt extendedglob			# enable extended globbing.
 setopt nomatch
 setopt notify
-setopt correctall		# Auto-correct any commands typed.
+setopt correctall			# Auto-correct any commands typed.
 
 zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
 
 # Make the completion system look a
-# bit better.
+# bit better and make the tab completion
+# into a graphical menu.
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+zstyle ':completion:*' menu select 	# enable a graphical menu for tab completion
 
 # set the fpath and load all of the
 # default functions of zsh.
@@ -98,6 +101,9 @@ export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 # set vim as the default editor (if installed).
 export EDITOR="vim"
 export VISUAL="vim"
+
+# set less as the default pager
+PAGER='less'
 
 # Arch Linux only aliases
 alias sysupdate="sudo pacman -Syyu"     # refresh the repos and do a system update if updates are available
