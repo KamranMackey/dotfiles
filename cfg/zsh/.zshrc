@@ -26,7 +26,7 @@ setopt appendhistory		# Don't overwrite history.
 
 # General settings
 setopt autocd			# automatically cd into directories if I only type the directory name
-setopt no_beep 			# Don't ever, ever, beep at me.
+setopt no_beep			# don't ever, ever, beep at me.
 setopt extendedglob
 setopt nomatch
 setopt notify
