@@ -12,25 +12,25 @@ if [ "$TERM" = "xterm" ]; then
 fi
 
 # useful aliases
-alias cp="cp -i"			# confirm before overwriting something
-alias df='df -h'			# human-readable sizes
-alias free='free -m'			# show sizes in MB
+alias cp="cp -i"		# confirm before overwriting something
+alias df='df -h'		# human-readable sizes
+alias free='free -m'		# show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
 # history settings
 HISTFILE=$ZDOTDIR/.histfile
-HISTSIZE=1000000			# Make the history go up to 1 million lines
-SAVEHIST=1000000			# Same for this.
+HISTSIZE=1000000		# Make the history go up to 1 million lines
+SAVEHIST=1000000		# Same for this.
 setopt appendhistory		# Don't overwrite history.
 
 # General settings
-setopt autocd				# automatically cd into directories if I only type the directory name
-setopt no_beep 				# Don't ever, ever, beep at me.
+setopt autocd			# automatically cd into directories if I only type the directory name
+setopt no_beep 			# Don't ever, ever, beep at me.
 setopt extendedglob
 setopt nomatch
 setopt notify
-setopt correctall			# Auto-correct any commands typed.
+setopt correctall		# Auto-correct any commands typed.
 
 zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
 
