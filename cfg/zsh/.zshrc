@@ -31,16 +31,21 @@ setopt no_beep				# don't ever, ever, beep at me.
 setopt extendedglob			# enable extended globbing.
 setopt nomatch
 setopt notify
-setopt correctall			# Auto-correct any commands typed.
 
 zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
 
-# Make the completion system look a
-# bit better and make the tab completion
-# into a graphical menu.
+# performance tweaks
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $HOME/.zsh/cache
+zstyle ':completion:*' use-perl on
+
+# make the completion system look a
+# bit better and enable the tab completion
+# graphical menu.
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-zstyle ':completion:*' menu select 	# enable a graphical menu for tab completion
+zstyle ':completion:*' menu yes select 	# show menu when tabbing
+zstyle ':completion:*' rehash true	# set compinit to automatically detect new executables
 
 # set the fpath and load all of the
 # default functions of zsh.
@@ -91,16 +96,25 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 # screenfetch displays various system details such as the
 # CPU, how much RAM is in use, the number of packages, the
 # shell name and version number, and other small things.
-$HOME/local/bin/screenfetch-dev
+$HOME/.local/bin/screenfetch-dev
 
-# add linuxbrew to to the PATH
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
 # set vim as the default editor (if installed).
 export EDITOR="vim"
 export VISUAL="vim"
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+
+b16() {
+    BASE16_SHELL="$@"
+    [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
+
+}
+
+compdef '_files -g "$HOME/.config/base16-shell/*"' b16
 
 # set less as the default pager
 PAGER='less'
@@ -120,11 +134,3 @@ alias version="zsh --version"
 
 # alias hub as git
 alias git=hub
-
-# Create an alias so that way WeeChat
-# uses $XDG_CONFIG_HOME/weechat directory.
-alias weechat="weechat -d $XDG_CONFIG_HOME/weechat"
-
-# change the vim alias to use the config
-# file located in $XDG_CONFIG_HOME.
-alias vim="vim -u $XDG_CONFIG_HOME/vim/.vimrc"
