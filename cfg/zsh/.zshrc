@@ -23,7 +23,7 @@ alias free='free -m'			# show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
-# history settings
+# History settings
 HISTFILE=$ZDOTDIR/.histfile
 HISTSIZE=1000000			# Make the history go up to 1 million lines
 SAVEHIST=1000000			# Same for this.
@@ -52,7 +52,9 @@ setopt completealiases			# autocomplete aliases
 
 zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
 
-# performance tweaks
+# A few performance tweaks to
+# make the completion system
+# a bit faster.
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $HOME/.zsh/cache
 zstyle ':completion:*' use-perl on
