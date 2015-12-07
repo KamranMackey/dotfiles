@@ -16,7 +16,7 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 
-# useful aliases
+# useful aliases.
 alias cp="cp -i"			# confirm before overwriting something
 alias df='df -h'			# human-readable sizes
 alias free='free -m'			# show sizes in MB
