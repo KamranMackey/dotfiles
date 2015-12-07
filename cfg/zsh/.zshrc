@@ -11,6 +11,11 @@ if [ "$TERM" = "xterm" ]; then
   fi
 fi
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+
 # useful aliases
 alias cp="cp -i"			# confirm before overwriting something
 alias df='df -h'			# human-readable sizes
@@ -23,7 +28,19 @@ HISTFILE=$ZDOTDIR/.histfile
 HISTSIZE=1000000			# Make the history go up to 1 million lines
 SAVEHIST=1000000			# Same for this.
 setopt appendhistory			# Don't overwrite history.
+setopt inc_append_history		# save history as we go, not just when zsh exits
 setopt extended_history			# put timestamps in the history.
+setopt no_bg_nice
+setopt share_history
+setopt bang_hist
+#setopt hist_reduce_blanks
+setopt hist_ignore_space
+setopt hist_find_no_dups
+setopt nohistverify
+setopt prompt_subst
+##setopt hist_fcntl_lock
+setopt always_to_end
+#setopt nohistfcntllock
 
 # General settings
 setopt autocd				# automatically cd into directories if I only type the directory name
@@ -31,6 +48,7 @@ setopt no_beep				# don't ever, ever, beep at me.
 setopt extendedglob			# enable extended globbing.
 setopt nomatch
 setopt notify
+setopt completealiases			# autocomplete aliases
 
 zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
 
@@ -102,11 +120,6 @@ $HOME/.local/bin/screenfetch-dev
 # set vim as the default editor (if installed).
 export EDITOR="vim"
 export VISUAL="vim"
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 
 b16() {
     BASE16_SHELL="$@"
