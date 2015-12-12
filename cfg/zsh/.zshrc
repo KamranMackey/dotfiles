@@ -118,10 +118,25 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 # shell name and version number, and other small things.
 $HOME/.local/bin/screenfetch-dev
 
+# add ruby gems to the $PATH.
+PATH=$PATH:/home/kamran/.gem/ruby/2.2.0/bin
+export PATH
 
 # set vim as the default editor (if installed).
 export EDITOR="vim"
 export VISUAL="vim"
+
+# enable colors in the less pager
+man() {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
+}
 
 b16() {
     BASE16_SHELL="$@"
