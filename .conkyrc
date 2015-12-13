@@ -1,0 +1,131 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+Heavily modified by zerol0g1k
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+update_interval = 1,
+total_run_times = 0,
+net_avg_samples = 1,
+cpu_avg_samples = 1,
+
+imlib_cache_size = 0,
+double_buffer = true,
+no_buffers = true,
+
+
+use_xft = true,
+font = 'Hack-Regular":size=10',
+override_utf8_locale = true,
+text_buffer_size = 2048,
+
+
+
+own_window_class = 'Conky',
+own_window = true,
+own_window_type = 'normal',
+own_window_transparent = true,
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+alignment = 'top_right',
+gap_x = 28,
+gap_y = 46,
+maximum_width = 190,
+
+
+
+draw_shades = false,
+
+default_color = 'cccccc',
+
+color0 = 'white',
+color1 = 'E07A1F',
+color2 = 'white',
+}
+
+conky.text = [[
+
+${color #299DD7}[Kamrans-Laptop]${color} ${hr 2}
+${goto 6}${voffset 6}${font conkycolorslogos:size=37}i${font}${goto 57}${voffset -26} Arch: $machine
+${goto 54} ${color #299DD7}${kernel} ${color}${voffset 8}
+${hr 2}
+${voffset 8}CPU Freq ${hr 2}
+${goto 6}${voffset 4}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: ${color #299DD7}${freq_g (1)} GHz
+
+${color}CPU Usage ${hr 2}
+${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core0:${color #299DD7}${cpu cpu1}% ${alignr}${color}Core1: ${color #299DD7}${cpu cpu2}%${color}
+${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core2:${color #299DD7}${cpu cpu3}% ${alignr}${color}Core3: ${color #299DD7}${cpu cpu4}%${color}
+
+CPU Temperatures ${hr 2}
+${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core0:${color #299DD7}${execi 30 sensors | grep 'Core0' | cut -c16-19} °Celsius${color}
+${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core1:${color #299DD7}${execi 30 sensors | grep 'Core1' | cut -c16-19} °Celsius${color}
+
+Misc Info ${hr 2}
+#${goto 6}${voffset 4}${font conkycolors:size=16}d${font}${voffset -4}${goto 32}GPU Temp: ${alignr}${color #299DD7}${exec nvidia-settings -q GPUCoreTemp | grep Attribute | cut -d ' ' -f 6 | cut -c 1-2} °C$color
+${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM:${color #299DD7}${mem} ${alignr}${color}${memgraph 8,60 299DD7}
+${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk:${color #299DD7}${diskio}${alignr}${color}${diskiograph 8,60 299DD7}
+${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime:${color #299DD7}${uptime}${color}
+${goto 6}${voffset 4}${font conkycolors:size=16}C${font}${voffset -4}${goto 32}Processes: ${alignr}${processes} ${running_processes}
+${goto 7.5}${voffset 12}${goto 32}${voffset -10}Highest: ${alignr}CPU${alignr}/RAM
+${voffset -5.5}${hr 1}
+${voffset -1}${goto 8}${top name 1} ${goto 124}  ${color #299DD7}${top cpu 1}${color}${alignr }${top mem 1}
+${voffset -1}${goto 8}${top name 2} ${goto 124}  ${color #299DD7}${top cpu 2}${color}${alignr }${top mem 2}
+${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color #299DD7}${top cpu 3}${color}${alignr }${top mem 3}
+${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color #299DD7}${top cpu 4}${color}${alignr }${top mem 4}
+
+HDD ${hr 2}
+${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sdb1${voffset 4}
+${color #299DD7}${fs_free /}/${fs_size /} ${color}${goto 6}${voffset 18}${fs_bar /}
+${font conkycolors:size=16}i${font} ${voffset -5}Home on /dev/sdb2
+${voffset 4}${color #299DD7}${fs_free /home}/${fs_size /home} ${color}${goto 6}${voffset 18}${fs_bar /home}
+${font conkycolors:size=16}i${font} ${voffset -5}External on /dev/sda$voffset 4}
+${color #299DD7}${fs_free /run/media/kamran/External}/${fs_size /run/media/kamran/External} ${color}${goto 6}${voffset 18}${fs_bar /run/media/kamran/External}
+
+Network ${hr 2}
+${if_up wlp4s0}
+${font conkycolors:size=14}k${font}${goto 32}${voffset -8}SSID: ${wireless_essid wlp4s0}
+${goto 32}Signal: ${wireless_link_qual wlp4s0}% ${alignr}${wireless_link_bar 8,60 wlp4s0}
+${voffset 4}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${upspeed wlp4s0}${font} ${alignr}${upspeedgraph wlp4s0 8,60 299DD7}
+${goto 32}Total: ${totalup wlp4s0}
+${voffset 4}${font conkycolors:size=14}u${font}${goto 32}${voffset -6}Down: ${downspeed wlp4s0}${font} ${alignr}${downspeedgraph wlp4s0 8,60 299DD7}
+${goto 32}Total: ${totaldown wlp4s0}
+${voffset 4}${font conkycolors:size=13}A${font}${goto 32}${voffset -8}Local IP: ${alignr}${addr wlp4s0}
+
+${else}${if_up enp4s0}
+${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up:${color #299DD7}${upspeed enp4s07}${color}${font} ${alignr}${upspeedgraph enp4s0 8,60 299DD7}
+${goto 32}Total:${totalup enp4s0}
+${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down:${color #299DD7}${downspeed enp4s0}${color}${font}${alignr}${downspeedgraph enp4s0 8,60 299DD7}
+${voffset 6}${goto 32}Total: ${totaldown enp4s0}
+${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr enp4s0}${color}
+${endif}${else}${if_up ppp0}
+${voffset -13}${font conkycolors Solid:size=14}q${font}${goto 32}${voffset -6}Up: ${upspeed ppp0}${font} ${alignr}${upspeedgraph ppp0 8,60 299DD7}
+${goto 32}Total: ${totalup ppp0}
+${voffset -2}${font conkycolors Solid:size=14}Q${font}${goto 32}${voffset -6}Down: ${downspeed ppp0}${font} ${alignr}${downspeedgraph ppp0 8,60 299DD7}
+${goto 32}Total: ${totaldown ppp0}
+${voffset -2}${font Poky:size=13}w${font}${goto 32}${voffset -4}Local IP: ${alignr}${addr ppp0}
+${endif}${else}${hr 2}${voffset 8}${goto 6}${voffset 4}${font Hack-Regular:size=34}arch${voffset 4}${goto 124}${font conkycolorslogos:size=42}a${voffset 2}${goto 2}${font} L  i  n  u  x ${endif}${endif}
+${color}${hr 2}
+]]
