@@ -61,8 +61,8 @@ color1 = 'E07A1F',
 color2 = 'white',
 }
 
+-- Change the first line under conky.text to your own computer hostname.
 conky.text = [[
-
 ${color #299DD7}[Kamrans-Laptop]${color} ${hr 2}
 ${goto 6}${voffset 6}${font conkycolorslogos:size=37}i${font}${goto 56}${voffset -28} Arch: $machine
 ${goto 56} Kernel: ${color #299DD7}${kernel} ${color}${voffset 8}
