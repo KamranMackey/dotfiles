@@ -37,7 +37,7 @@ double_buffer = true,
 no_buffers = true,
 use_xft = true,
 font = 'Iosevka-thin":size=10.5',
-override_utf8_locale = true, 	-- Overwrite the UTF-8 locale.
+override_utf8_locale = true, 	-- Override the UTF-8 locale.
 
 text_buffer_size = 2048,
 
