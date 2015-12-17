@@ -1,4 +1,4 @@
--- vim: ts=4 sw=4 noet ai cindent syntax=lua
+-- vim: ts=8 sw=4 noet ai cindent syntax=lua
 --[[
 Conky, a system monitor, based on torsmo
 
@@ -35,10 +35,10 @@ cpu_avg_samples = 1,
 imlib_cache_size = 0,
 double_buffer = true,
 no_buffers = true,
-
 use_xft = true,
-font = 'Iosevka-Thin":size=10.5',
-override_utf8_locale = true,
+font = 'Iosevka-thin":size=10.5',
+override_utf8_locale = true, 	-- Overwrite the UTF-8 locale.
+
 text_buffer_size = 2048,
 
 own_window_class = 'Conky', 	-- Set the window class to Conky.
@@ -50,9 +50,9 @@ own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 alignment = 'top_right',
 gap_x = 28,
 gap_y = 46,
-maximum_width = 192,
+maximum_width = 300,
 
-draw_shades = false,
+draw_shades = true,		-- Draw shades. (Helps Conky display when using light backgrounds)
 
 default_color = 'cccccc',
 
@@ -61,22 +61,24 @@ color1 = 'E07A1F',
 color2 = 'white',
 }
 
--- Change the first line under conky.text to your own computer hostname.
 conky.text = [[
-${color #299DD7}[Kamrans-Laptop]${color} ${hr 2}
+${color #299DD7}[$nodename]${color} ${hr 2}
 ${goto 6}${voffset 6}${font conkycolorslogos:size=37}i${font}${goto 56}${voffset -28} Arch: $machine
 ${goto 56} Kernel: ${color #299DD7}${kernel} ${color}${voffset 8}
 ${hr 2}
-${voffset 8}CPU Info ${hr 2}
-${goto 6}${voffset 3}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: ${color #299DD7}${freq_g (1)} GHz
+System Info ${hr 2}
+${color grey}Mesa version: ${color #299DD7}${execi 99999 glxinfo | grep "OpenGL version string"| sed -e 's/OpenGL version string.*: 3.0 //'|head -1|awk '{print $1, $2, $3}'}
+${color grey}Packages:${color #299DD7} ${execi 9999 pacman -Qq | wc -l}
+${color grey}Package Updates:${color #299DD7} ${execi 9999 checkupdates | wc -l}
+$color${voffset 8}CPU Info ${hr 2}
+$color${goto 6}${voffset 3}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: $alignr${color #299DD7}${freq_g (1)} GHz
 
 ${color}CPU Usage ${hr 2}
 ${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 0: ${color #299DD7}${cpu cpu1}% ${alignr}${color}Core 1: ${color #299DD7}${cpu cpu2}%${color}
 ${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 2: ${color #299DD7}${cpu cpu3}% ${alignr}${color}Core 3: ${color #299DD7}${cpu cpu4}%${color}
 
 Misc Info ${hr 2}
-#${goto 6}${voffset 4}${font conkycolors:size=16}d${font}${voffset -4}${goto 32}GPU Temp: ${alignr}${color #299DD7}${exec nvidia-settings -q GPUCoreTemp | grep Attribute | cut -d ' ' -f 6 | cut -c 1-2} °C$color
-${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color #299DD7}${mem} ${alignr}${color}${memgraph 8,60 299DD7}i
+${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color #299DD7}${mem} ${alignr}${color}${memgraph 8,60 299DD7}
 ${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk: ${color #299DD7}${diskio}${alignr}${color}${diskiograph 8,60 299DD7}
 ${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime: ${color #299DD7}${uptime}${color}
 ${goto 6}${voffset 4}${font conkycolors:size=16}C${font}${voffset -4}${goto 32}Processes: ${alignr}${processes} ${running_processes}
@@ -86,6 +88,11 @@ ${voffset -1}${goto 8}${top name 1} ${goto 124}  ${color #299DD7}${top cpu 1}${c
 ${voffset -1}${goto 8}${top name 2} ${goto 124}  ${color #299DD7}${top cpu 2}${color}${alignr }${top mem 2}
 ${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color #299DD7}${top cpu 3}${color}${alignr }${top mem 3}
 ${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color #299DD7}${top cpu 4}${color}${alignr }${top mem 4}
+
+C* Music Player ${hr 2}
+${color grey}Song: ${color #299DD7}${cmus_artist} - ${cmus_title}
+${color grey}Album: ${color #299DD7}${cmus_album}
+${color}${cmus_progress}
 
 HDD ${hr 2}
 ${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sdb1${voffset 4}
@@ -106,9 +113,9 @@ ${goto 32}Total: ${totaldown wlp5s0}
 ${voffset 4}${font conkycolors:size=13}A${font}${goto 32}${voffset -8}Local IP: ${alignr}${addr wlp5s0}
 
 ${else}${if_up happypanda0}
-${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up:${color #299DD7}${upspeed happypanda0}${color}${font} ${alignr}${upspeedgraph happypanda0 8,60 299DD7}
-${goto 32}Total:${totalup happypanda0}
-${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down:${color #299DD7}${downspeed happypanda0}${color}${font}${alignr}${downspeedgraph happypanda0 8,60 #299DD7}
+${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color #299DD7}${upspeed happypanda0}${color}${font} ${alignr}${upspeedgraph happypanda0 8,60 299DD7}
+${goto 32}Total: ${totalup happypanda0}
+${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color #299DD7}${downspeed happypanda0}${color}${font}${alignr}${downspeedgraph happypanda0 8,60 #299DD7}
 ${voffset 6}${goto 32}Total: ${totaldown happypanda0}
 ${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr happypanda0}${color}
 ${endif}${else}${if_up ppp0}
@@ -116,7 +123,5 @@ ${voffset -13}${font conkycolors Solid:size=14}q${font}${goto 32}${voffset -6}Up
 ${goto 32}Total: ${totalup ppp0}
 ${voffset -2}${font conkycolors Solid:size=14}Q${font}${goto 32}${voffset -6}Down: ${downspeed ppp0}${font} ${alignr}${downspeedgraph ppp0 8,60 299DD7}
 ${goto 32}Total: ${totaldown ppp0}
-
-${endif}${else}${hr 2}${voffset 8}${goto 6}${voffset 4}${font Iosevka-Heavy:size=34}arch${voffset 4}${goto 124}${font conkycolorslogos:size=43}a${voffset 0}${goto 2}${font} L  i  n  u  x ${endif}${endif}
-${color}${hr 2}
+${endif}
 ]]
