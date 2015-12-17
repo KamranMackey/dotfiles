@@ -52,7 +52,7 @@ gap_x = 28,
 gap_y = 46,
 maximum_width = 300,
 
-draw_shades = true,		-- Draw shades. (Helps Conky display when using light backgrounds)
+draw_shades = true,		-- Draw shades. (Helps Conky display better on light backgrounds.)
 
 default_color = 'cccccc',
 
