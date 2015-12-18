@@ -8,7 +8,7 @@ if has('vim_starting')
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-call plug#begin('$XDG_CONFIG_HOME/vim/plugged')			" Begin vim-plug initalization phase.
+call plug#begin('$HOME/vim/plugged')			" Begin vim-plug initalization phase.
 
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
@@ -51,7 +51,7 @@ Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'chriskempson/base16-vim', {'rtp': 'vim/'}
 
 " Custom Plugins
-Plug 'Shougo/neocomplete.vim'
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'vim-perl/vim-perl'
 Plug 'c9s/perlomni.vim'
@@ -110,7 +110,7 @@ Plug 'ecomba/vim-ruby-refactoring'
 " Add plugins to &runtimepath
 call plug#end()							" End vim-plug initalization phase.
 
-" Required:
+" Required: Enable filetypes.
 filetype plugin indent on
 
 "*****************************************************************************
@@ -123,10 +123,6 @@ set fileencodings=utf-8
 
 "" Fix backspace indent
 set backspace=indent,eol,start
-
-"" Change the viminfo location to be in
-"" $XDG_CONFIG_HOME.
-set viminfo+=n$XDG_CONFIG_HOME/vim/.viminfo
 
 "" Tabs. May be overriten by autocmd rules
 set tabstop=8
@@ -153,7 +149,7 @@ set ttyfast
 
 "" Directories for swp files
 set nobackup
-set noswapfile
+set noswapfile						" Disable the swapfile.
 
 set fileformats=unix,dos,mac
 set showcmd
@@ -188,7 +184,7 @@ set cursorline
 set guioptions=egmrti
 
 " Change the font to Hack Regular.
-set gfn=Hack\ Regular\ 10
+set gfn=Iosevka\ Regular\ 10
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
@@ -269,77 +265,12 @@ noremap <F3> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $XDG_CONFIG_HOME.'/vim/.vimshell_hist',
-    \ 'scheme' : $XDG_CONFIG_HOME.'/vim/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
@@ -365,7 +296,7 @@ endif
 "*****************************************************************************
 "" Autocmd Rules
 "*****************************************************************************
-"" The PC is fast enough, do syntax highlight syncing from start
+"" Enable syntax highlight syncing from the start.
 augroup vimrc-sync-fromstart
   autocmd!
   autocmd BufEnter * :syntax sync fromstart
@@ -454,7 +385,6 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
-
 
 " Disable visualbell
 set visualbell t_vb=
