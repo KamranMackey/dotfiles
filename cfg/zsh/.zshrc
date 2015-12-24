@@ -16,16 +16,16 @@ BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.light.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Useful aliases.
-alias cp="cp -i"			# confirm before overwriting something
-alias df='df -h'			# human-readable sizes
+alias cp="cp -i"		# confirm before overwriting something
+alias df='df -h'		# human-readable sizes
 alias free='free -m'		# show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 
 # History settings
 HISTFILE=$ZDOTDIR/.histfile
-HISTSIZE=1000000			# Make the history go up to 1 million lines
-SAVEHIST=1000000			# Same for this.
+HISTSIZE=1000000		# Make the history go up to 1 million lines
+SAVEHIST=1000000		# Same for this.
 setopt appendhistory		# Don't overwrite history.
 setopt inc_append_history	# save history as we go, not just when zsh exits
 setopt extended_history		# put timestamps in the history.
@@ -41,9 +41,9 @@ setopt always_to_end
 #setopt nohistfcntllock
 
 # General settings
-setopt autocd				# automatically cd into directories if I only type the directory name
-setopt no_beep				# don't ever, ever, beep at me.
-setopt extendedglob			#  enable extended globbing.
+setopt autocd			# automatically cd into directories if I only type the directory name
+setopt no_beep			# don't ever, ever, beep at me.
+setopt extendedglob		# enable extended globbing.
 setopt nomatch
 setopt notify
 setopt completealiases		# autocomplete aliases
@@ -63,7 +63,7 @@ zstyle ':completion:*' use-perl on
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*' menu yes select 	# show menu when tabbing
-zstyle ':completion:*' rehash true		# set compinit to automatically detect new executables
+zstyle ':completion:*' rehash true	# set compinit to automatically detect new executables
 
 # set the fpath and load all of the
 # default functions of zsh.
