@@ -12,7 +12,7 @@ if [ "$TERM" = "xterm" ]; then
 fi
 
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.light.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Useful aliases.
@@ -29,7 +29,6 @@ SAVEHIST=1000000			# Same for this.
 setopt appendhistory			# Don't overwrite history.
 setopt inc_append_history		# save history as we go, not just when zsh exits
 setopt extended_history			# put timestamps in the history.
-setopt no_bg_nice
 setopt share_history
 setopt bang_hist
 #setopt hist_reduce_blanks
@@ -51,9 +50,9 @@ setopt completealiases			# autocomplete aliases
 
 zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
 
-# A few performance tweaks to
-# make the completion system
-# a bit faster.
+# A few performance tweaks to make
+# the completion system a bit faster
+# by using a cache and using Perl.
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $HOME/.zsh/cache
 zstyle ':completion:*' use-perl on
@@ -125,7 +124,15 @@ export PATH
 export EDITOR="vim"
 export VISUAL="vim"
 
-# enable colors in the less pager
+# Print the current running command's name to the window title.
+function preexec {
+   if [[ $TERM == xterm-*  ]]; then
+       local cmd=${1[(wr)^(*=*|sudo|exec|ssh|-*)]}
+       print -Pn "\e];$cmd:q\a"
+   fi
+}
+
+# colored manpages
 man() {
     env LESS_TERMCAP_mb=$'\E[01;31m' \
     LESS_TERMCAP_md=$'\E[01;38;5;74m' \
@@ -149,7 +156,7 @@ compdef '_files -g "$HOME/.config/base16-shell/*"' b16
 PAGER='less'
 
 # Arch Linux only aliases
-alias sysupdate="sudo pacman -Syyu"     # refresh the repos and do a system update if updates are available
+alias sysupdate="yaourt -Syyua --no-prompt"     # refresh the repos and do a system update if updates are available
 alias repo-refresh="sudo pacman -Syy"   # refresh the repos only
 alias install="sudo pacman -S"          # install packages
 alias remove="sudo pacman -Rns"         # remove packages, their config files and unneeded dependencies.
@@ -158,8 +165,12 @@ alias aur-install="yaourt -S"           # install packages from the AUR.
 # Playlist handler alias
 alias playlisthandler="$HOME/local/bin/playlisthandler"
 
-# zsh --version alias
+# zsh --version alias, similar to
+# bash's built-in version command.
 alias version="zsh --version"
 
 # alias hub as git
 alias git=hub
+
+# enable fish-like syntax highlighting.
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
