@@ -12,7 +12,7 @@ if [ "$TERM" = "xterm" ]; then
 fi
 
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.light.sh"
+BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Useful aliases.
@@ -156,7 +156,7 @@ compdef '_files -g "$HOME/.config/base16-shell/*"' b16
 PAGER='less'
 
 # Arch Linux only aliases
-alias sysupdate="yaourt -Syyua --no-prompt"	# refresh the repos and do a system update if updates are available
+alias sysupdate="yaourt -Syyua"	# refresh the repos and do a system update if updates are available
 alias repo-refresh="sudo pacman -Syy"   	# refresh the repos only
 alias install="sudo pacman -S"          	# install packages
 alias remove="sudo pacman -Rns"         	# remove packages, their config files and unneeded dependencies.
