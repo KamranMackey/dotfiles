@@ -47,8 +47,9 @@ Plug 'honza/vim-snippets'
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plug 'chriskempson/base16-vim', {'rtp': 'vim/'}
+Plug 'altercation/vim-colors-solarized'
+Plug 'zenorocha/dracula-theme'
+Plug 'chriskempson/base16-vim'
 
 " Custom Plugins
 Plug 'Valloric/YouCompleteMe'
@@ -125,9 +126,9 @@ set fileencodings=utf-8
 set backspace=indent,eol,start
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=8
-set softtabstop=0
-set shiftwidth=8
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 
 "" Map leader to ,
@@ -153,7 +154,7 @@ set noswapfile						" Disable the swapfile.
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/usr/bin/zsh					" Set zsh as the default shell.
+set shell=/usr/bin/zsh				" Set zsh as the default shell.
 
 " session management
 let g:session_directory = "/home/kamran/local/vim/session"
@@ -162,39 +163,41 @@ let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
 " mouse settings
-set mouse=a                 				" Automatically enable mouse usage.
-set mousehide               				" Hide the mouse cursor while typing.
+set mouse=a                 		" Automatically enable mouse usage.
+set mousehide               		" Hide the mouse cursor while typing.
 
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
-syntax on						" Enable syntax highlighting.
-set ruler						" Enable the ruler.
-set number						" Enable line numbering.
-
-colorscheme gruvbox					" Make gruvbox the default colorscheme.
-set background=dark					" Assume a dark background.
-let g:gruvbox_italicize_comments = 1 			" Italicize comments when using the gruvbox colorscheme.
-let g:gruvbox_contrast_light = "hard"
-let g:indentLine_char = '┆'				" Customize the indentLine character.
+syntax on							" Enable syntax highlighting.
+set ruler							" Enable the ruler.
+set number							" Enable line numbering.
+syntax enable
+set background=dark
+let g:indentLine_char = '┆'			" Customize the indentLine character.
 
 set mousemodel=popup
-set t_Co=256
 set cursorline
 set guioptions=egmrti
 
-" Change the font to Hack Regular.
-set gfn=Iosevka\ Regular\ 10
+" Change the GUI font to Iosevka Regular.
+" Highly recommend installing Iosevka
+" as it's an amazing font for programming.
+set gfn=Iosevka\ Regular\ 11
 
 if has("gui_running")
-  if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
-    set transparency=7
-  endif
+  colorscheme solarized
+  let g:CSApprox_loaded = 1
+  set background=dark
+  let g:solarized_termcolors=256
+  let g:airline_theme = 'solarized'
 else
   let g:CSApprox_loaded = 1
+  set background=dark
+  colorscheme gruvbox
+  let g:airline_theme = 'gruvbox'
 
-  if $COLORTERM == 'gnome-terminal'
+if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
   else
     if $TERM == 'xterm'
@@ -224,7 +227,6 @@ if exists("*fugitive#statusline")
 endif
 
 " vim-airline
-let g:airline_theme = 'gruvbox'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -289,7 +291,6 @@ if !exists('*s:setupWrapping')
     set wm=2
     set textwidth=79
   endfunction
-endif
 
 "*****************************************************************************
 "" Autocmd Rules
@@ -396,12 +397,6 @@ noremap YY "+y<CR>
 noremap <leader>p "+gP<CR>
 noremap XX "+x<CR>
 
-if has('macunix')
-  " pbcopy for OSX copy/paste
-  vmap <C-x> :!pbcopy<CR>
-  vmap <C-c> :w !pbcopy<CR><CR>
-endif
-
 "" Buffer nav
 noremap <leader>z :bp<CR>
 noremap <leader>q :bp<CR>
@@ -433,20 +428,16 @@ noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=lin
 
 "" Custom configs
 
-
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-
 
 let erlang_folding = 1
 let erlang_show_errors = 1
 
-
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-
 
 let g:javascript_enable_domhtmlcss = 1
 
@@ -557,6 +548,7 @@ let g:tagbar_type_ruby = {
         \ 'F:singleton methods'
     \ ]
 \ }
+
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
@@ -613,4 +605,5 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+:endif
 :endif

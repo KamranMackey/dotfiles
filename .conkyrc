@@ -36,7 +36,7 @@ imlib_cache_size = 0,
 double_buffer = true,
 no_buffers = true,
 use_xft = true,
-font = 'Iosevka-thin":size=10.5',
+font = 'Iosevka-Regular":size=10.5', -- Use Iosevka as the font.
 override_utf8_locale = true, 	-- Override the UTF-8 locale.
 
 text_buffer_size = 2048,
@@ -62,45 +62,46 @@ color2 = 'white',
 }
 
 conky.text = [[
-${color #299DD7}[$nodename]${color} ${hr 2}
+${color #299DD7}[$nodename]${color0} ${hr 2}
 ${goto 6}${voffset 6}${font conkycolorslogos:size=37}i${font}${goto 56}${voffset -28} Arch: $machine
-${goto 56} Kernel: ${color #299DD7}${kernel} ${color}${voffset 8}
+${goto 56} Kernel: ${color #299DD7}${kernel} ${color0}${voffset 8}
 ${hr 2}
-System Info ${hr 2}
-${color grey}Mesa version: ${color #299DD7}${execi 99999 glxinfo | grep "OpenGL version string"| sed -e 's/OpenGL version string.*: 3.0 //'|head -1|awk '{print $1, $2, $3}'}
-${color grey}Packages:${color #299DD7} ${execi 9999 pacman -Qq | wc -l}
-${color grey}Package Updates:${color #299DD7} ${execi 9999 checkupdates | wc -l}
-$color${voffset 8}CPU Info ${hr 2}
-$color${goto 6}${voffset 3}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: $alignr${color #299DD7}${freq_g (1)} GHz
+${color0}System Info ${hr 2}
+${color0}Mesa version: ${color #299DD7}${execi 999 glxinfo | grep "OpenGL version string"| sed -e 's/OpenGL version string.*: 3.0 //'|head -1|awk '{print $1, $2, $3}'}
+${color0}Packages:${color #299DD7} ${execi 999 pacman -Qq | wc -l}
+${color white}Package Updates:${color #299DD7} ${execi 999 checkupdates | wc -l}
+${color white}${voffset 8}CPU Info ${hr 2}
+${goto 6}${voffset 3}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: $alignr${color #299DD7}${freq_g (1)} GHz
 
-${color}CPU Usage ${hr 2}
-${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 0: ${color #299DD7}${cpu cpu1}% ${alignr}${color}Core 1: ${color #299DD7}${cpu cpu2}%${color}
-${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 2: ${color #299DD7}${cpu cpu3}% ${alignr}${color}Core 3: ${color #299DD7}${cpu cpu4}%${color}
+${color white}CPU Usage ${hr 2}
+${color white}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 0: ${color #299DD7}${cpu cpu1}% ${alignr}${color white}Core 1: ${color #299DD7}${cpu cpu2}%${color0}
+${color white}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color white}Core 2: ${color #299DD7}${cpu cpu3}% ${alignr}${color white}Core 3: ${color #299DD7}${cpu cpu4}%${color0}
 
-Misc Info ${hr 2}
-${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color #299DD7}${mem} ${alignr}${color}${memgraph 8,60 299DD7}
-${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk: ${color #299DD7}${diskio}${alignr}${color}${diskiograph 8,60 299DD7}
-${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime: ${color #299DD7}${uptime}${color}
+${color white}Misc Info ${hr 2}
+${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color #299DD7}${mem} ${alignr}${color0}${memgraph 8,60 #299DD7}
+${color white}${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk: ${color #299DD7}${diskio}${alignr}${color0}${diskiograph 8,60 #299DD7}
+${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime: ${color #299DD7}${uptime}${color0}
 ${goto 6}${voffset 4}${font conkycolors:size=16}C${font}${voffset -4}${goto 32}Processes: ${alignr}${processes} ${running_processes}
 ${goto 7.5}${voffset 12}${goto 32}${voffset -10}Highest: ${alignr}CPU${alignr}/RAM
 ${voffset -5.5}${hr 1}
-${voffset -1}${goto 8}${top name 1} ${goto 124}  ${color #299DD7}${top cpu 1}${color}${alignr }${top mem 1}
-${voffset -1}${goto 8}${top name 2} ${goto 124}  ${color #299DD7}${top cpu 2}${color}${alignr }${top mem 2}
-${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color #299DD7}${top cpu 3}${color}${alignr }${top mem 3}
-${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color #299DD7}${top cpu 4}${color}${alignr }${top mem 4}
+${voffset -1}${goto 8}${top name 1} ${goto 124}  ${color #299DD7}${top cpu 1}${color0}${alignr }${top mem 1}
+${voffset -1}${goto 8}${top name 2} ${goto 124}  ${color #299DD7}${top cpu 2}${color0}${alignr }${top mem 2}
+${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color #299DD7}${top cpu 3}${color0}${alignr }${top mem 3}
+${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color #299DD7}${top cpu 4}${color0}${alignr }${top mem 4}
 
-C* Music Player ${hr 2}
-${color grey}Song: ${color #299DD7}${cmus_artist} - ${cmus_title}
-${color grey}Album: ${color #299DD7}${cmus_album}
-${color}${cmus_progress}
+${color white}C* Music Player ${hr 2}
+${color white}Song: ${color #299DD7}${cmus_artist} - ${cmus_title} $alignr ${color white}(${cmus_date})
+${color white}Album: ${color #299DD7}${cmus_album}
+${color white}${cmus_progress}
+Playing: ${cmus_aaa} $alignr Genre: ${cmus_genre}
 
-HDD ${hr 2}
+${color white}HDD ${hr 2}
 ${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sdb1${voffset 4}
-${color #299DD7}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color}${goto 6}${voffset 18}${fs_bar /}
-${font conkycolors:size=16}i${font} ${voffset -5}Home on /dev/sdb2
-${voffset 4}${color #299DD7}${fs_free /home}/${fs_size /home} $alignr ${fs_used_perc /home}% ${color}${goto 6}${voffset 18}${fs_bar /home}
-${font conkycolors:size=16}i${font} ${voffset -5}External on /dev/sda
-${color #299DD7}${fs_free /run/media/kamran/External}/${fs_size /run/media/kamran/External} $alignr ${fs_used_perc /dev/sda}% ${color}${goto 6}${voffset 18}${fs_bar /run/media/kamran/External}
+${color #299DD7}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color0}${goto 6}${voffset 18}${fs_bar /}
+${color white}${font conkycolors:size=16}i${font} ${voffset -5}Home on /dev/sdb2
+${voffset 4}${color #299DD7}${fs_free /home}/${fs_size /home} $alignr ${fs_used_perc /home}% ${color0}${goto 6}${voffset 18}${fs_bar /home}
+${color white}${font conkycolors:size=16}i${font} ${voffset -5}External on /dev/sda
+${color #299DD7}${fs_free /run/media/kamran/External}/${fs_size /run/media/kamran/External} $alignr ${fs_used_perc /dev/sda}% ${color0}${goto 6}${voffset 18}${fs_bar /run/media/kamran/External}
 
 Network ${hr 2}
 ${if_up wlp5s0}
@@ -113,11 +114,11 @@ ${goto 32}Total: ${totaldown wlp5s0}
 ${voffset 4}${font conkycolors:size=13}A${font}${goto 32}${voffset -8}Local IP: ${alignr}${addr wlp5s0}
 
 ${else}${if_up happypanda0}
-${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color #299DD7}${upspeed happypanda0}${color}${font} ${alignr}${upspeedgraph happypanda0 8,60 299DD7}
+${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color #299DD7}${upspeed happypanda0}${color0}${font} ${alignr}${upspeedgraph happypanda0 8,60 299DD7}
 ${goto 32}Total: ${totalup happypanda0}
-${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color #299DD7}${downspeed happypanda0}${color}${font}${alignr}${downspeedgraph happypanda0 8,60 #299DD7}
+${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color #299DD7}${downspeed happypanda0}${color0}${font}${alignr}${downspeedgraph happypanda0 8,60 #299DD7}
 ${voffset 6}${goto 32}Total: ${totaldown happypanda0}
-${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr happypanda0}${color}
+${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr happypanda0}${color0}
 ${endif}${else}${if_up ppp0}
 ${voffset -13}${font conkycolors Solid:size=14}q${font}${goto 32}${voffset -6}Up: ${upspeed ppp0}${font} ${alignr}${upspeedgraph ppp0 8,60 299DD7}
 ${goto 32}Total: ${totalup ppp0}
