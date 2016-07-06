@@ -60,6 +60,8 @@ Plug 'c9s/perlomni.vim'
 Plug 'vim-scripts/c.vim'
 
 Plug 'jimenezrick/vimerl'
+
+Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 
 Plug 'xolox/vim-lua-ftplugin'
