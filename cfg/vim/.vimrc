@@ -68,10 +68,7 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-lua-inspect'
 
 " Lisp Plugins
-Plug 'vim-scripts/slimv.vim'
-
-" JavaScript Plugins
-Plug 'scrooloose/syntastic'
+Plug 'vim-scripts/slimv.vim
 
 " HTML Plugins
 Plug 'amirh/HTML-AutoCloseTag'
@@ -83,7 +80,6 @@ Plug 'def-lkb/ocp-indent-vim'
 
 " Python Plugins
 Plug 'davidhalter/jedi-vim'
-Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 
