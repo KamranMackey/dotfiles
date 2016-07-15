@@ -1,15 +1,18 @@
-"*****************************************************************************
-"" vim-plug core
-"*****************************************************************************
+" Kamran's .vimrc
+"
+" This is my custom VIM configuration.
+" Feel free to tweak it to your own liking.
 
+"" Vim Startup Options
 if has('vim_starting')
-  set nocompatible               				" Be iMproved
+  set nocompatible	" Disable compatiblity with vi
 
-"*****************************************************************************
-"" Plug install packages
-"*****************************************************************************
-call plug#begin('$HOME/vim/plugged')			" Begin vim-plug initalization phase.
+"*********************************
+""" Plugins
+"*********************************"
+call plug#begin('~/.vim/plugged')
 
+"" General Plugins
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -48,27 +51,21 @@ Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
-Plug 'zenorocha/dracula-theme'
 Plug 'chriskempson/base16-vim'
 
 " Custom Plugins
-Plug 'Valloric/YouCompleteMe'
-
 Plug 'vim-perl/vim-perl'
 Plug 'c9s/perlomni.vim'
-
 Plug 'vim-scripts/c.vim'
-
 Plug 'jimenezrick/vimerl'
-
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
-
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-lua-inspect'
+Plug 'Shougo/neocomplete.vim'
 
 " Lisp Plugins
-Plug 'vim-scripts/slimv.vim
+Plug 'vim-scripts/slimv.vim'
 
 " HTML Plugins
 Plug 'amirh/HTML-AutoCloseTag'
@@ -83,9 +80,12 @@ Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
 Plug 'Yggdroot/indentLine'
 
+" Other stuff
 Plug 'eagletmt/neco-ghc'
 Plug 'dag/vim2hs'
 Plug 'pbrisbin/vim-syntax-shakespeare'
+
+"" Elixir
 Plug 'elixir-lang/vim-elixir'
 Plug 'carlosgaldino/elixir-snippets'
 
@@ -110,9 +110,9 @@ call plug#end()							" End vim-plug initalization phase.
 " Required: Enable filetypes.
 filetype plugin indent on
 
-"*****************************************************************************
+"*************************************************
 "" Basic Setup
-"*****************************************************************************"
+"*************************************************"
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -153,18 +153,14 @@ set showcmd
 set shell=/usr/bin/zsh				" Set zsh as the default shell.
 
 " session management
-let g:session_directory = "/home/kamran/local/vim/session"
+let g:session_directory = "~/.vim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-" mouse settings
-set mouse=a                 		" Automatically enable mouse usage.
-set mousehide               		" Hide the mouse cursor while typing.
-
-"*****************************************************************************
+"**************************************************
 "" Visual Settings
-"*****************************************************************************
+"**************************************************
 syntax on							" Enable syntax highlighting.
 set ruler							" Enable the ruler.
 set number							" Enable line numbering.
@@ -176,10 +172,10 @@ set mousemodel=popup
 set cursorline
 set guioptions=egmrti
 
-" Change the GUI font to Iosevka Regular.
-" Highly recommend installing Iosevka
-" as it's an amazing font for programming.
-set gfn=Iosevka\ Regular\ 11
+" Change the GUI font to Hack.
+" Highly recommend installing Hack as
+" it's an amazing font for programming.
+set gfn=Hack\ 11
 
 if has("gui_running")
   colorscheme solarized
@@ -190,8 +186,8 @@ if has("gui_running")
 else
   let g:CSApprox_loaded = 1
   set background=dark
-  colorscheme gruvbox
-  let g:airline_theme = 'gruvbox'
+  colorscheme molokai
+  let g:airline_theme = 'dark'
 
 if $COLORTERM == 'gnome-terminal'
     set term=gnome-256color
@@ -216,8 +212,6 @@ set modelines=10
 
 set title
 
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
@@ -231,7 +225,7 @@ let g:airline_powerline_fonts = 1
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
-"" no one is really happy until you have these shortcuts
+"" Custom shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
@@ -242,6 +236,8 @@ cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
+cnoremap sudow w !sudo tee % >/dev/null
+
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
@@ -252,6 +248,7 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeShowHidden=1		" display hidden files automatically
 let g:NERDTreeWinSize = 50
+let g:NERDTreeWinPos = "right"	" Place NERDTree on the right of the screen
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 noremap <F3> :NERDTreeToggle<CR>
@@ -261,12 +258,73 @@ noremap <F3> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+"" NeoComplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
