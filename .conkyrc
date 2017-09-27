@@ -95,34 +95,18 @@ ${color white}Album: ${color #299DD7}${cmus_album}
 ${color white}${cmus_progress}
 Playing: ${cmus_aaa} $alignr Genre: ${cmus_genre}
 
-${color white}HDD ${hr 2}
+${color white}HDD Usage ${hr 2}
 ${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sdb1${voffset 4}
 ${color #299DD7}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color0}${goto 6}${voffset 18}${fs_bar /}
-${color white}${font conkycolors:size=16}i${font} ${voffset -5}Home on /dev/sdb2
-${voffset 4}${color #299DD7}${fs_free /home}/${fs_size /home} $alignr ${fs_used_perc /home}% ${color0}${goto 6}${voffset 18}${fs_bar /home}
-${color white}${font conkycolors:size=16}i${font} ${voffset -5}External on /dev/sda
-${color #299DD7}${fs_free /run/media/kamran/External}/${fs_size /run/media/kamran/External} $alignr ${fs_used_perc /dev/sda}% ${color0}${goto 6}${voffset 18}${fs_bar /run/media/kamran/External}
+${color white}${font conkycolors:size=16}i${font} ${voffset -5}Games/Media on /dev/sdb
+${color #299DD7}${fs_free /run/Media}/${fs_size /run/Media} $alignr ${fs_used_perc /dev/sda}% ${color0}${goto 6}${voffset 18}${fs_bar /run/Media}
 
 Network ${hr 2}
-${if_up wlp5s0}
-${font conkycolors:size=14}k${font}${goto 32}${voffset -8}SSID: ${wireless_essid wlp5s0}
-${goto 32}Signal: ${wireless_link_qual wlp5s0}% ${alignr}${wireless_link_bar 8,60 wlp5s0}
-${voffset 4}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${upspeed wlp5s0}${font} ${alignr}${upspeedgraph wlp5s0 8,60 299DD7}
-${goto 32}Total: ${totalup wlp5s0}
-${voffset 4}${font conkycolors:size=14}u${font}${goto 32}${voffset -6}Down: ${downspeed wlp5s0}${font} ${alignr}${downspeedgraph wlp5s0 8,60 299DD7}
-${goto 32}Total: ${totaldown wlp5s0}
-${voffset 4}${font conkycolors:size=13}A${font}${goto 32}${voffset -8}Local IP: ${alignr}${addr wlp5s0}
-
-${else}${if_up happypanda0}
-${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color #299DD7}${upspeed happypanda0}${color0}${font} ${alignr}${upspeedgraph happypanda0 8,60 299DD7}
-${goto 32}Total: ${totalup happypanda0}
-${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color #299DD7}${downspeed happypanda0}${color0}${font}${alignr}${downspeedgraph happypanda0 8,60 #299DD7}
-${voffset 6}${goto 32}Total: ${totaldown happypanda0}
-${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr happypanda0}${color0}
-${endif}${else}${if_up ppp0}
-${voffset -13}${font conkycolors Solid:size=14}q${font}${goto 32}${voffset -6}Up: ${upspeed ppp0}${font} ${alignr}${upspeedgraph ppp0 8,60 299DD7}
-${goto 32}Total: ${totalup ppp0}
-${voffset -2}${font conkycolors Solid:size=14}Q${font}${goto 32}${voffset -6}Down: ${downspeed ppp0}${font} ${alignr}${downspeedgraph ppp0 8,60 299DD7}
-${goto 32}Total: ${totaldown ppp0}
+${if_up enp30s0}
+${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color #299DD7}${upspeed enp30s0}${color0}${font} ${alignr}${upspeedgraph enp30s0 8,60 299DD7}
+${goto 32}Total: ${totalup enp30s0}
+${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color #299DD7}${downspeed enp30s0}${color0}${font}${alignr}${downspeedgraph enp30s0 8,60 #299DD7}
+${voffset 6}${goto 32}Total: ${totaldown enp30s0}
+${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr enp30s0}${color0}
 ${endif}
 ]]
