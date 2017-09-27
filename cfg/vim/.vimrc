@@ -18,6 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/grep.vim'
@@ -68,7 +69,7 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'vim-scripts/slimv.vim'
 
 " HTML Plugins
-Plug 'amirh/HTML-AutoCloseTag'
+Plug 'vim-scripts/HTML-AutoCloseTag'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
@@ -150,7 +151,7 @@ set noswapfile						" Disable the swapfile.
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/usr/bin/zsh				" Set zsh as the default shell.
+set shell=/usr/bin/bash				" Set zsh as the default shell.
 
 " session management
 let g:session_directory = "~/.vim/session"
@@ -170,27 +171,27 @@ let g:indentLine_char = '┆'			" Customize the indentLine character.
 
 set mousemodel=popup
 set cursorline
-set guioptions=egmrti
+set guioptions=egti
 
 " Change the GUI font to Hack.
 " Highly recommend installing Hack as
 " it's an amazing font for programming.
-set gfn=Hack\ 11
+set gfn=Hack\ 9
 
 if has("gui_running")
-  colorscheme solarized
+  colorscheme base16-gruvbox-dark-hard
   let g:CSApprox_loaded = 1
   set background=dark
-  let g:solarized_termcolors=256
-  let g:airline_theme = 'solarized'
+  let g:airline_theme = 'gruvbox'
 else
   let g:CSApprox_loaded = 1
   set background=dark
   colorscheme molokai
   let g:airline_theme = 'dark'
 
-if $COLORTERM == 'gnome-terminal'
+if $COLORTERM == 'konsole'
     set term=gnome-256color
+	colorscheme dessert
   else
     if $TERM == 'xterm'
       set term=xterm-256color
@@ -248,7 +249,7 @@ let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeShowHidden=1		" display hidden files automatically
 let g:NERDTreeWinSize = 50
-let g:NERDTreeWinPos = "right"	" Place NERDTree on the right of the screen
+let g:NERDTreeWinPos = "left"	" Place NERDTree on the right of the screen
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 noremap <F3> :NERDTreeToggle<CR>
@@ -658,6 +659,7 @@ else
   let g:airline_symbols.branch = ''
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
+
 endif
 :endif
 :endif
