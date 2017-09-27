@@ -99,7 +99,7 @@ ${color white}HDD Usage ${hr 2}
 ${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sdb1${voffset 4}
 ${color #299DD7}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color0}${goto 6}${voffset 18}${fs_bar /}
 ${color white}${font conkycolors:size=16}i${font} ${voffset -5}Games/Media on /dev/sdb
-${color #299DD7}${fs_free /run/Media}/${fs_size /run/Media} $alignr ${fs_used_perc /dev/sda}% ${color0}${goto 6}${voffset 18}${fs_bar /run/Media}
+${color #299DD7}${fs_free /run/Media}/${fs_size /run/Media} $alignr ${fs_used_perc /dev/sdb}% ${color0}${goto 6}${voffset 18}${fs_bar /run/Media}
 
 Network ${hr 2}
 ${if_up enp30s0}
