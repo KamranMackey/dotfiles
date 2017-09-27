@@ -191,7 +191,6 @@ else
 
 if $COLORTERM == 'konsole'
     set term=gnome-256color
-	colorscheme dessert
   else
     if $TERM == 'xterm'
       set term=xterm-256color
