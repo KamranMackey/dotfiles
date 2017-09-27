@@ -51,7 +51,6 @@ Plug 'honza/vim-snippets'
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 
 " Custom Plugins
