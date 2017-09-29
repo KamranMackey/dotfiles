@@ -1,16 +1,15 @@
 -- Kamran's Conky configuration
 --
 -- You may tweak and configure this configuration as you
--- see fit. Make sure you change thhe network device and
+-- see fit. Make sure you change the network device and
 -- hard drive names so that way they match your config.
 --
 -- This configuration is best used on a 1920x1080 monitor
 -- or better.
 --
---
 -- Things you need before you can use this configuration:
 -- Conky Colors (provides the icons used in this config)
--- Iosevka (the font used in this configuration)
+-- Hack (the font used in this configuration)
 -- C* Music Player (cmus, needed for the music player section)
 conky.config = {
 update_interval = 1,
@@ -22,7 +21,7 @@ imlib_cache_size = 0,
 double_buffer = true,
 no_buffers = true,
 use_xft = true,
-font = 'Hack:size=10',		    -- Use Iosevka as the font.
+font = 'Hack:size=10',		    -- Use Hack as the font.
 override_utf8_locale = true,	    -- Override the UTF-8 locale.
 
 text_buffer_size = 2048,
