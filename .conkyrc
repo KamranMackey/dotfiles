@@ -67,7 +67,7 @@ ${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${
 ${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color0}Core 7: ${color1}${cpu cpu7}% ${alignr}${color0}Core 8: ${color1}${cpu cpu8}%${color0}
 
 ${color0}Misc Info ${hr 2}
-${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color1}${mem} (Used), ${color1}${memmax} (Total)${alignr}${color0}${memgraph 8,60 #299DD7}
+${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color1}${mem}/${color1}${memmax} ${alignr}${color0}${memgraph 8,60 #299DD7}
 ${color0}${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk: ${color1}${diskio}${alignr}${color0}${diskiograph 8,60 #299DD7}
 ${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime: ${color1}${uptime}${color0}
 ${goto 6}${voffset 4}${font conkycolors:size=16}C${font}${voffset -4}${goto 32}Processes: ${alignr}${processes} ${running_processes}
