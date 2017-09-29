@@ -6,7 +6,7 @@
 --
 -- Things you need before you can use this configuration:
 -- Conky Colors (provides the icons used in this config)
--- Iosevka (the font used in this configuration)
+-- Hack (the font used in this configuration)
 -- C* Music Player (cmus, needed for the music player section)
 conky.config = {
 update_interval = 1,
