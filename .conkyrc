@@ -4,6 +4,9 @@
 -- see fit. Make sure you change the network device and
 -- hard drive names so that way they match your config.
 --
+-- This configuration is best used on a 1920x1080 monitor
+-- or better.
+--
 -- Things you need before you can use this configuration:
 -- Conky Colors (provides the icons used in this config)
 -- Hack (the font used in this configuration)
