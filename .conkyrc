@@ -1,15 +1,16 @@
 -- Kamran's Conky configuration
 --
 -- You may tweak and configure this configuration as you
--- see fit. Make sure you change the network device and
+-- see fit. Make sure you change thhe network device and
 -- hard drive names so that way they match your config.
 --
 -- This configuration is best used on a 1920x1080 monitor
 -- or better.
 --
+--
 -- Things you need before you can use this configuration:
 -- Conky Colors (provides the icons used in this config)
--- Hack (the font used in this configuration)
+-- Iosevka (the font used in this configuration)
 -- C* Music Player (cmus, needed for the music player section)
 conky.config = {
 update_interval = 1,
@@ -21,7 +22,7 @@ imlib_cache_size = 0,
 double_buffer = true,
 no_buffers = true,
 use_xft = true,
-font = 'Hack:size=10',		    -- Use Hack as the font.
+font = 'Hack:size=10',		    -- Use Iosevka as the font.
 override_utf8_locale = true,	    -- Override the UTF-8 locale.
 
 text_buffer_size = 2048,
@@ -35,8 +36,8 @@ own_window_argb_visual = true,
 own_window_argb_value = 100,
 
 alignment = 'top_right',
-gap_x = 28,
-gap_y = 46,
+gap_x = 15,
+gap_y = 5,
 maximum_width = 385,
 
 draw_shades = true,		    -- Draw shades. (Helps Conky display better on light backgrounds.)
@@ -79,7 +80,7 @@ ${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color1}${top cpu 3}${color0}$
 ${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color1}${top cpu 4}${color0}${alignr }${top mem 4}
 
 ${color0}C* Music Player ${hr 2}
-${color0}Song: ${color1}${cmus_artist} - ${cmus_title} $alignr ${color0}(${cmus_date})
+${color0}Song: ${color1}${cmus_artist} - ${cmus_title}
 ${color0}Album: ${color1}${cmus_album}
 ${color0}${cmus_progress}
 ${color0}State: ${color1}${cmus_state} ${alignr}${color0}Genre: ${color1}${cmus_genre}
@@ -89,7 +90,8 @@ ${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sda${voffset 4}
 ${color1}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color0}${goto 6}${voffset 18}${fs_bar /}
 ${color0}${font conkycolors:size=16}i${font} ${voffset -5}Games/Media on /dev/sdb
 ${color1}${fs_free /mnt/Media}/${fs_size /mnt/Media} $alignr ${fs_used_perc /mnt/Media}% ${color0}${goto 6}${voffset 18}${fs_bar /mnt/Media}
-Network ${hr 2}
+
+${color0}Network ${hr 2}
 ${if_up enp30s0}
 ${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color1}${upspeed enp30s0}${color0}${font} ${alignr}${upspeedgraph enp30s0 8,60 299DD7}
 ${goto 32}Total: ${totalup enp30s0}
