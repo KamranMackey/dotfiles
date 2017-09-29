@@ -1,31 +1,13 @@
--- vim: ts=8 sw=4 noet ai cindent syntax=lua
---[[
-Conky, a system monitor, based on torsmo
-
-Any original torsmo code is licensed under the BSD license
-
-All code written since the fork of torsmo is licensed under the GPL
-
-Please see COPYING for details
-
-Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
-Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
-Heavily modified by zerol0g1k
-All rights reserved.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-]]
-
+-- Kamran's Conky configuration
+--
+-- You may tweak and configure this configuration as you
+-- see fit. Make sure you change thhe network device and
+-- hard drive names so that way they match your config.
+--
+-- Things you need before you can use this configuration:
+-- Conky Colors (provides the icons used in this config)
+-- Iosevka (the font used in this configuration)
+-- C* Music Player (cmus, needed for the music player section)
 conky.config = {
 update_interval = 1,
 total_run_times = 0,
@@ -36,77 +18,82 @@ imlib_cache_size = 0,
 double_buffer = true,
 no_buffers = true,
 use_xft = true,
-font = 'Iosevka-Regular":size=10.5', -- Use Iosevka as the font.
-override_utf8_locale = true, 	-- Override the UTF-8 locale.
+font = 'Hack:size=10',		    -- Use Iosevka as the font.
+override_utf8_locale = true,	    -- Override the UTF-8 locale.
 
 text_buffer_size = 2048,
 
-own_window_class = 'Conky', 	-- Set the window class to Conky.
-own_window = true,		-- Make conky its own window.
-own_window_type = 'normal',	-- Set the window type to normal.
-own_window_transparent = true,	-- Make the conky window transparent.
+own_window_class = 'Conky',	    -- Set the window class to Conky.
+own_window = true,		    -- Make conky its own window.
+own_window_type = 'normal',	    -- Set the window type to normal.
+own_window_transparent = true,	    -- Make the conky window transparent.
 own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+own_window_argb_visual = true,
+own_window_argb_value = 100,
 
 alignment = 'top_right',
 gap_x = 28,
 gap_y = 46,
-maximum_width = 300,
+maximum_width = 385,
 
-draw_shades = true,		-- Draw shades. (Helps Conky display better on light backgrounds.)
+draw_shades = true,		    -- Draw shades. (Helps Conky display better on light backgrounds.)
 
 default_color = 'cccccc',
 
 color0 = 'white',
-color1 = 'E07A1F',
-color2 = 'white',
+color1 = '299DD7',
 }
 
+-- Main text block
 conky.text = [[
-${color #299DD7}[$nodename]${color0} ${hr 2}
-${goto 6}${voffset 6}${font conkycolorslogos:size=37}i${font}${goto 56}${voffset -28} Arch: $machine
-${goto 56} Kernel: ${color #299DD7}${kernel} ${color0}${voffset 8}
+${color1}[$nodename]${color0} ${hr 2}
+${goto 6}${voffset 6}${font conkycolorslogos:size=37}a${font}${goto 56}${voffset -28} Architecture: ${color1}${machine}
+${color0}${goto 56} Kernel: ${color1}${kernel} ${color0}${voffset 8}
 ${hr 2}
 ${color0}System Info ${hr 2}
-${color0}Mesa version: ${color #299DD7}${execi 999 glxinfo | grep "OpenGL version string"| sed -e 's/OpenGL version string.*: 3.0 //'|head -1|awk '{print $1, $2, $3}'}
-${color0}Packages:${color #299DD7} ${execi 999 pacman -Qq | wc -l}
-${color white}Package Updates:${color #299DD7} ${execi 999 checkupdates | wc -l}
-${color white}${voffset 8}CPU Info ${hr 2}
-${goto 6}${voffset 3}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: $alignr${color #299DD7}${freq_g (1)} GHz
+${color0}Packages:${color1} ${execi 999 pacman -Qq | wc -l}
+${color0}Package Updates:${color1} ${execi 999 checkupdates | wc -l}
+${color0}${voffset 8}CPU Info ${hr 2}
+${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color0}Name:${alignr}${color1}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-16}${color0}
+${goto 6}${voffset 3}${font conkycolors:size=16}E${font}${voffset -4}${goto 32}Frequency: $alignr${color1}${freq_g (1)} GHz
 
-${color white}CPU Usage ${hr 2}
-${color white}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 0: ${color #299DD7}${cpu cpu1}% ${alignr}${color white}Core 1: ${color #299DD7}${cpu cpu2}%${color0}
-${color white}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color white}Core 2: ${color #299DD7}${cpu cpu3}% ${alignr}${color white}Core 3: ${color #299DD7}${cpu cpu4}%${color0}
+${color0}CPU Usage ${hr 2}
+${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}Core 1: ${color1}${cpu cpu1}% ${alignr}${color0}Core 2: ${color1}${cpu cpu2}%${color0}
+${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color0}Core 3: ${color1}${cpu cpu3}% ${alignr}${color0}Core 4: ${color1}${cpu cpu4}%${color0}
+${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color0}Core 5: ${color1}${cpu cpu5}% ${alignr}${color0}Core 6: ${color1}${cpu cpu6}%${color0}
+${color0}${goto 6}${voffset 4}${font conkycolors:size=16}c${font}${voffset -4}${goto 32}${color0}Core 7: ${color1}${cpu cpu7}% ${alignr}${color0}Core 8: ${color1}${cpu cpu8}%${color0}
 
-${color white}Misc Info ${hr 2}
-${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color #299DD7}${mem} ${alignr}${color0}${memgraph 8,60 #299DD7}
-${color white}${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk: ${color #299DD7}${diskio}${alignr}${color0}${diskiograph 8,60 #299DD7}
-${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime: ${color #299DD7}${uptime}${color0}
+${color0}Misc Info ${hr 2}
+${goto 6}${voffset 4}${font conkycolors:size=16}g${font}${voffset -4}${goto 32}RAM: ${color1}${mem} ${alignr}${color0}${memgraph 8,60 #299DD7}
+${color0}${goto 6}${voffset 4}${font conkycolors:size=16}i${font}${voffset -4}${goto 32}Disk: ${color1}${diskio}${alignr}${color0}${diskiograph 8,60 #299DD7}
+${goto 6}${voffset 4}${font conkycolors:size=16}o${font}${voffset -4}${goto 32}Uptime: ${color1}${uptime}${color0}
 ${goto 6}${voffset 4}${font conkycolors:size=16}C${font}${voffset -4}${goto 32}Processes: ${alignr}${processes} ${running_processes}
 ${goto 7.5}${voffset 12}${goto 32}${voffset -10}Highest: ${alignr}CPU${alignr}/RAM
 ${voffset -5.5}${hr 1}
-${voffset -1}${goto 8}${top name 1} ${goto 124}  ${color #299DD7}${top cpu 1}${color0}${alignr }${top mem 1}
-${voffset -1}${goto 8}${top name 2} ${goto 124}  ${color #299DD7}${top cpu 2}${color0}${alignr }${top mem 2}
-${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color #299DD7}${top cpu 3}${color0}${alignr }${top mem 3}
-${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color #299DD7}${top cpu 4}${color0}${alignr }${top mem 4}
+${voffset -1}${goto 8}${top name 1} ${goto 124}  ${color1}${top cpu 1}${color0}${alignr }${top mem 1}
+${voffset -1}${goto 8}${top name 2} ${goto 124}  ${color1}${top cpu 2}${color0}${alignr }${top mem 2}
+${voffset -1}${goto 8}${top name 3} ${goto 124}  ${color1}${top cpu 3}${color0}${alignr }${top mem 3}
+${voffset -1}${goto 8}${top name 4} ${goto 124}  ${color1}${top cpu 4}${color0}${alignr }${top mem 4}
 
-${color white}C* Music Player ${hr 2}
-${color white}Song: ${color #299DD7}${cmus_artist} - ${cmus_title} $alignr ${color white}(${cmus_date})
-${color white}Album: ${color #299DD7}${cmus_album}
-${color white}${cmus_progress}
-Playing: ${cmus_aaa} $alignr Genre: ${cmus_genre}
+${color0}C* Music Player ${hr 2}
+${color0}Song: ${color1}${cmus_artist} - ${cmus_title} $alignr ${color0}(${cmus_date})
+${color0}Album: ${color1}${cmus_album}
+${color0}${cmus_progress}
+${color0}State: ${color1}${cmus_state} ${alignr}${color0}Genre: ${color1}${cmus_genre}
 
-${color white}HDD Usage ${hr 2}
-${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sdb1${voffset 4}
-${color #299DD7}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color0}${goto 6}${voffset 18}${fs_bar /}
-${color white}${font conkycolors:size=16}i${font} ${voffset -5}Games/Media on /dev/sdb
-${color #299DD7}${fs_free /run/Media}/${fs_size /run/Media} $alignr ${fs_used_perc /dev/sdb}% ${color0}${goto 6}${voffset 18}${fs_bar /run/Media}
-
+${color0}HDD Usage ${hr 2}
+${font conkycolors:size=16}i${font} ${voffset -5}Root on /dev/sda${voffset 4}
+${color1}${fs_free /}/${fs_size /} $alignr ${fs_used_perc /}% ${color0}${goto 6}${voffset 18}${fs_bar /}
+${color0}${font conkycolors:size=16}i${font} ${voffset -5}Games/Media on /dev/sdb
+${color1}${fs_free /mnt/Media}/${fs_size /mnt/Media} $alignr ${fs_used_perc /mnt/Media}% ${color0}${goto 6}${voffset 18}${fs_bar /mnt/Media}
 Network ${hr 2}
 ${if_up enp30s0}
-${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color #299DD7}${upspeed enp30s0}${color0}${font} ${alignr}${upspeedgraph enp30s0 8,60 299DD7}
+${voffset -13}${font conkycolors:size=14}x${font}${goto 32}${voffset -6}Up: ${color1}${upspeed enp30s0}${color0}${font} ${alignr}${upspeedgraph enp30s0 8,60 299DD7}
 ${goto 32}Total: ${totalup enp30s0}
-${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color #299DD7}${downspeed enp30s0}${color0}${font}${alignr}${downspeedgraph enp30s0 8,60 #299DD7}
+${voffset -2}${font conkycolors:size=14}u${font}${goto 32}${voffset -2}Down: ${color1}${downspeed enp30s0}${color0}${font}${alignr}${downspeedgraph enp30s0 8,60 #299DD7}
 ${voffset 6}${goto 32}Total: ${totaldown enp30s0}
-${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color #299DD7}${addr enp30s0}${color0}
+${voffset -1}${font conkycolors:size=13}A${font}${goto 32}${voffset -4}IP: ${color1}${addr enp30s0}${color0}
 ${endif}
 ]]
+
+-- vim: ts=8 sw=4 noet ai cindent syntax=lua
