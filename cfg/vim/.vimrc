@@ -51,12 +51,13 @@ Plug 'honza/vim-snippets'
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 
 " Custom Plugins
 Plug 'vim-perl/vim-perl'
 Plug 'c9s/perlomni.vim'
-Plug 'vim-scripts/c.vim'
+Plug 'WolfgangMehner/c-support'
 Plug 'jimenezrick/vimerl'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
@@ -65,7 +66,7 @@ Plug 'xolox/vim-lua-inspect'
 Plug 'Shougo/neocomplete.vim'
 
 " Lisp Plugins
-Plug 'vim-scripts/slimv.vim'
+Plug 'kovisoft/slimv'
 
 " HTML Plugins
 Plug 'vim-scripts/HTML-AutoCloseTag'
@@ -185,11 +186,16 @@ if has("gui_running")
 else
   let g:CSApprox_loaded = 1
   set background=dark
-  colorscheme molokai
+  colorscheme gruvbox
   let g:airline_theme = 'dark'
 
+"" If using konsole, set the base16 color space to 256.
+if $TERM !~# "konsole.*"
+    let base16colorspace=256
+endif
+
 if $COLORTERM == 'konsole'
-    set term=gnome-256color
+    set term=konsole-256color
   else
     if $TERM == 'xterm'
       set term=xterm-256color
@@ -210,6 +216,14 @@ set modeline
 set modelines=10
 
 set title
+
+"" Add a function that lets me switch windows by using
+"" the leader key plus a number.
+let i = 1
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
 
 if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
@@ -257,75 +271,64 @@ noremap <F3> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"" NeoComplete
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
+" Neocomplete (auto complete)
+let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
 let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
+let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#auto_completion_start_length = 2
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+" increase limit for tag cache files
+let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
 
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+" fuzzy completion breaks dot-repeat more noticeably
+" https://github.com/Shougo/neocomplete.vim/issues/332
+let g:neocomplete#enable_fuzzy_completion = 0
+
+" always use completions from all buffers
+if !exists('g:neocomplete#same_filetypes')
+ let g:neocomplete#same_filetypes = {}
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#same_filetypes._ = '_'
+
+" enable omni-completion for more languages
+call neocomplete#util#set_default_dictionary(
+	\ 'g:neocomplete#sources#omni#input_patterns', 'ruby',
+	\ '[^. *\t]\.\h\w*\|\h\w*::\w*')
+call neocomplete#util#set_default_dictionary(
+	\ 'g:neocomplete#sources#omni#input_patterns',
+	\ 'php',
+	\ '[^. \t]->\h\w*\|\h\w*::\w*')
+call neocomplete#util#set_default_dictionary(
+	\ 'g:neocomplete#sources#omni#input_patterns',
+	\ 'elm',
+	\ '\.')
+" disable omni completion for Python.
+call neocomplete#util#set_default_dictionary(
+    \'g:neocomplete#sources#omni#input_patterns',
+	\'python',
+	\'')
+
+" from neocomplete.txt:
+" ---------------------
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+inoremap <expr> <C-g> neocomplete#undo_completion()
+inoremap <expr> <C-l> neocomplete#complete_common_string()
 
 " Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
+" <CR>: cancel popup and insert newline.
+inoremap <silent> <CR> <C-r>=neocomplete#smart_close_popup()<CR><CR>
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<C-TAB>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr> <C-y> neocomplete#close_popup()
+inoremap <expr> <C-e> neocomplete#cancel_popup()
+" }}}
 
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" grep.vim
+"  grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
