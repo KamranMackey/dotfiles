@@ -151,7 +151,7 @@ set noswapfile						" Disable the swapfile.
 
 set fileformats=unix,dos,mac
 set showcmd
-set shell=/usr/bin/bash				" Set zsh as the default shell.
+set shell=/usr/bin/bash				" Set bash as the default shell.
 
 " session management
 let g:session_directory = "~/.vim/session"
