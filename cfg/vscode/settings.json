@@ -1,42 +1,33 @@
 {
-    // Editor settings
-    //
-    // Font settings
-    "editor.fontFamily": "'Iosevka', 'SF Mono', Consolas, 'Courier New'", // Font family
-    "editor.fontSize": 13, // Font size
-    "editor.lineHeight": 0, // Line height
-    "editor.fontLigatures": true, // Font ligatures
-    // Miscellaneous settings.
-    "editor.smoothScrolling": true, // Smooth scrolling
-    "editor.cursorBlinking": "smooth", // Cursor blinking animation
-    "editor.cursorStyle": "block", // Cursor style
-    "editor.tabCompletion": true, // Enable tab completion.
+    "editor.fontFamily": "'Iosevka', 'SF Mono', Consolas, 'Courier New'",
+    "editor.fontSize": 13,
+    "editor.lineHeight": 0,
+    "editor.fontLigatures": true,
 
-    // Window options
+    "editor.smoothScrolling": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorStyle": "block",
+    "editor.tabCompletion": true,
+
     "window.menuBarVisibility": "toggle",
 
-    // Python linting
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
         "--disable=line-too-long"
     ],
 
-    // Terminal settings
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
     "terminal.integrated.fontSize": 12.5,
     "terminal.integrated.cursorBlinking": true,
         
-    // File settings
-    "files.eol": "\n", // Set line endings to be compatible with Linux.
+    "files.eol": "\n",
     "files.useExperimentalFileWatcher": true,
     "files.exclude": {
-        "**/__pycache__/": true // Hide the __pycache__ folder from view.
+        "**/__pycache__/": true
     },
     
-    // Vim extension settings
     "vim.disableAnnoyingNeovimMessage": true,
     
-    // Workbench settings
     "workbench.colorTheme": "Material Theme",
     "workbench.activityBar.visible": true,
     "workbench.editor.labelFormat": "short",
