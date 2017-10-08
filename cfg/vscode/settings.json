@@ -1,0 +1,61 @@
+{
+    // Editor settings
+    //
+    // Font settings
+    "editor.fontFamily": "'Iosevka', 'SF Mono', Consolas, 'Courier New'", // Font family
+    "editor.fontSize": 13, // Font size
+    "editor.lineHeight": 0, // Line height
+    "editor.fontLigatures": true, // Font ligatures
+    // Miscellaneous settings.
+    "editor.smoothScrolling": true, // Smooth scrolling
+    "editor.cursorBlinking": "smooth", // Cursor blinking animation
+    "editor.cursorStyle": "block", // Cursor style
+    "editor.tabCompletion": true, // Enable tab completion.
+
+    // Window options
+    "window.menuBarVisibility": "toggle",
+
+    // Python linting
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=line-too-long"
+    ],
+
+    // Terminal settings
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "terminal.integrated.fontSize": 12.5,
+    "terminal.integrated.cursorBlinking": true,
+        
+    // File settings
+    "files.eol": "\n", // Set line endings to be compatible with Linux.
+    "files.useExperimentalFileWatcher": true,
+    "files.exclude": {
+        "**/__pycache__/": true // Hide the __pycache__ folder from view.
+    },
+    
+    // Vim extension settings
+    "vim.disableAnnoyingNeovimMessage": true,
+    
+    // Workbench settings
+    "workbench.colorTheme": "Material Theme",
+    "workbench.activityBar.visible": true,
+    "workbench.editor.labelFormat": "short",
+    "materialTheme.cache.workbench.settings": {
+        "themeColours": "Darker",
+        "accent": "Red"
+    },
+    "workbench.colorCustomizations": {
+        "activityBarBadge.background": "#E57373",
+        "list.activeSelectionForeground": "#E57373",
+        "list.inactiveSelectionForeground": "#E57373",
+        "list.highlightForeground": "#E57373",
+        "scrollbarSlider.activeBackground": "#E5737350",
+        "editorSuggestWidget.highlightForeground": "#E57373",
+        "textLink.foreground": "#E57373",
+        "progressBar.background": "#E57373",
+        "pickerGroup.foreground": "#E57373",
+        "tab.activeBorder": "#E57373"
+    },
+
+
+}
