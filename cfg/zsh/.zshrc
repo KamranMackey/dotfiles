@@ -11,19 +11,13 @@ if [ "$TERM" = "xterm" ]; then
   fi
 fi
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-solarized.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # Useful aliases.
 alias cp="cp -i"		# confirm before overwriting something
 alias df='df -h'		# human-readable sizes
 alias free='free -m'		# show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
+alias more=less			# more is also less!
 
-# History settings
-HISTFILE=$ZDOTDIR/.histfile
+HISTFILE=/Users/kamran/.histfile
 HISTSIZE=1000000		# Make the history go up to 1 million lines
 SAVEHIST=1000000		# Same for this.
 setopt appendhistory		# Don't overwrite history.
@@ -48,7 +42,7 @@ setopt nomatch
 setopt notify
 setopt completealiases		# autocomplete aliases
 
-zstyle :compinstall filename '/home/kamran/local/cfg/zsh/.zshrc'
+zstyle :compinstall filename '/Users/kamran/.zshrc'
 
 # A few performance tweaks to make
 # the completion system a bit faster
@@ -80,7 +74,8 @@ autoload -U promptinit && promptinit
 # run-help, and alias it to help.
 autoload -U run-help && autoload run-help-git
 autoload run-help-svn && autoload run-help-svk
-unalias run-help && alias help=run-help
+unalias run-help &>/dev/null 
+alias help=run-help
 
 # set some tools such as grep
 # to automatically use colors
@@ -107,18 +102,12 @@ case $TERM in
         ;;
 esac
 
-# better yaourt colors
-export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
-
-# launch screenfetch on terminal launch (if it's installed).
-# screenfetch displays various system details such as the
+# launch neofetch on terminal launch (if it's installed).
+# neofetch displays various system details such as the
 # CPU, how much RAM is in use, the number of packages, the
-# shell name and version number, and other small things.
-$HOME/.local/bin/screenfetch-dev
-
-# add ruby gems to the $PATH.
-PATH=$PATH:/home/kamran/.gem/ruby/2.2.0/bin
-export PATH
+# shell name and version number, and other small and helpful 
+# things.
+/usr/local/bin/neofetch
 
 # set vim as the default editor (if installed).
 export EDITOR="vim"
@@ -144,33 +133,11 @@ man() {
     man "$@"
 }
 
-b16() {
-    BASE16_SHELL="$@"
-    [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
-
-}
-
-compdef '_files -g "$HOME/.config/base16-shell/*"' b16
-
 # set less as the default pager
 PAGER='less'
-
-# Arch Linux only aliases
-alias sysupdate="yaourt -Syyua"	# refresh the repos and do a system update if updates are available
-alias repo-refresh="sudo pacman -Syy"   	# refresh the repos only
-alias install="sudo pacman -S"          	# install packages
-alias remove="sudo pacman -Rns"         	# remove packages, their config files and unneeded dependencies.
-alias aur-install="yaourt -S"           	# install packages from the AUR.
-
-# Playlist handler alias
-alias playlisthandler="$HOME/local/bin/playlisthandler"
 
 # zsh --version alias, similar to
 # bash's built-in version command.
 alias version="zsh --version"
 
-# alias hub as git
-alias git=hub
-
-# enable fish-like syntax highlighting.
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias bupgrade="brew upgrade $(brew list)"
