@@ -17,22 +17,21 @@ alias df='df -h'                # human-readable sizes
 alias free='free -m'            # show sizes in MB
 alias more=less                 # more is also less!
 
-HISTFILE=/Users/kamran/.histfile
-HISTSIZE=1000000		# Make the history go up to 1 million lines
-SAVEHIST=1000000		# Same for this.
-setopt appendhistory		# Don't overwrite history.
+# History settings
+HISTFILE=$HOME/.histfile
+HISTSIZE=1000000                # Make the history go up to 1 million lines
+SAVEHIST=1000000                # Same for this.
+setopt appendhistory            # Don't overwrite .histfile.
 setopt inc_append_history       # save history as we go, not just when zsh exits
-setopt extended_history		# put timestamps in the history.
+setopt extended_history         # put timestamps in the history.
 setopt share_history
 setopt bang_hist
-#setopt hist_reduce_blanks
+setopt hist_reduce_blanks       # Remove superfluous blanks from .histfile entiries.
 setopt hist_ignore_space
 setopt hist_find_no_dups
 setopt nohistverify
 setopt prompt_subst
-##setopt hist_fcntl_lock
 setopt always_to_end
-#setopt nohistfcntllock
 
 # General settings
 setopt autocd                   # automatically cd into directories if I only type the directory name
@@ -56,8 +55,8 @@ zstyle ':completion:*' use-perl on
 # graphical menu.
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-zstyle ':completion:*' menu yes select 	# show menu when tabbing
-zstyle ':completion:*' rehash true	# set compinit to automatically detect new executables
+zstyle ':completion:*' menu yes select  # show menu when tabbing
+zstyle ':completion:*' rehash true      # set compinit to automatically detect new executables
 
 # set the fpath and load all of the
 # default functions of zsh.
