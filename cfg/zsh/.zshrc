@@ -1,7 +1,3 @@
-#
-# Kamran's zsh configuration
-#
-
 # xterm hack for some terminals to support 256 colors
 if [ "$TERM" = "xterm" ]; then
   if [ -e /usr/share/terminfo/x/xterm-256color ]; then
@@ -12,15 +8,15 @@ if [ "$TERM" = "xterm" ]; then
 fi
 
 # Useful aliases.
-alias cp="cp -i"		# confirm before overwriting something
-alias df='df -h'		# human-readable sizes
-alias free='free -m'		# show sizes in MB
-alias more=less			# more is also less!
+alias cp="cp -i"		      # confirm before overwriting something
+alias df='df -h'		      # human-readable sizes
+alias free='free -m'		  # show sizes in MB
+alias more=less			      # more is also less!
 
 HISTFILE=/Users/kamran/.histfile
-HISTSIZE=1000000		# Make the history go up to 1 million lines
-SAVEHIST=1000000		# Same for this.
-setopt appendhistory		# Don't overwrite history.
+HISTSIZE=1000000		      # Make the history go up to 1 million lines
+SAVEHIST=1000000		      # Same for this.
+setopt appendhistory		  # Don't overwrite history.
 setopt inc_append_history	# save history as we go, not just when zsh exits
 setopt extended_history		# put timestamps in the history.
 setopt share_history
@@ -35,12 +31,12 @@ setopt always_to_end
 #setopt nohistfcntllock
 
 # General settings
-setopt autocd			# automatically cd into directories if I only type the directory name
-setopt no_beep			# don't ever, ever, beep at me.
-setopt extendedglob		# enable extended globbing.
+setopt autocd			        # automatically cd into directories if I only type the directory name
+setopt no_beep			      # don't ever, ever, beep at me.
+setopt extendedglob		    # enable extended globbing.
 setopt nomatch
 setopt notify
-setopt completealiases		# autocomplete aliases
+setopt completealiases    # autocomplete aliases
 
 zstyle :compinstall filename '/Users/kamran/.zshrc'
 
@@ -140,4 +136,4 @@ PAGER='less'
 # bash's built-in version command.
 alias version="zsh --version"
 
-alias bupgrade="brew upgrade $(brew list)"
+alias bupgrade='brew upgrade $(brew list)'
