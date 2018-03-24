@@ -79,10 +79,10 @@ alias help=run-help
 # set some tools such as grep
 # to automatically use colors
 # in their output.
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
+alias ls='ls -G'
+alias grep='grep -G'
+alias egrep='egrep -G'
+alias fgrep='fgrep -G'
 
 # Find out how many colors the terminal is capable of putting out.
 # Color-related settings _must_ use this if they don't want to blow up on less
