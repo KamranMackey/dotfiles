@@ -17,8 +17,8 @@ HISTFILE=/Users/kamran/.histfile
 HISTSIZE=1000000		      # Make the history go up to 1 million lines
 SAVEHIST=1000000		      # Same for this.
 setopt appendhistory		  # Don't overwrite history.
-setopt inc_append_history	# save history as we go, not just when zsh exits
-setopt extended_history		# put timestamps in the history.
+setopt inc_append_history     # save history as we go, not just when zsh exits
+setopt extended_history		  # put timestamps in the history.
 setopt share_history
 setopt bang_hist
 #setopt hist_reduce_blanks
@@ -31,12 +31,12 @@ setopt always_to_end
 #setopt nohistfcntllock
 
 # General settings
-setopt autocd			        # automatically cd into directories if I only type the directory name
+setopt autocd			      # automatically cd into directories if I only type the directory name
 setopt no_beep			      # don't ever, ever, beep at me.
-setopt extendedglob		    # enable extended globbing.
+setopt extendedglob		      # enable extended globbing.
 setopt nomatch
 setopt notify
-setopt completealiases    # autocomplete aliases
+setopt completealiases        # autocomplete aliases
 
 zstyle :compinstall filename '/Users/kamran/.zshrc'
 
