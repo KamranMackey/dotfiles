@@ -32,7 +32,7 @@ set expandtab                   " Insert spaces instead of tabs.
 """ -------------------------------
 set encoding=utf-8              " Set the main encoding to UTF-8.
 set fileencoding=utf-8          " Set the file encoding to UTF-8 as well.
+set shell=/usr/local/bin/zsh	" Set the default shell to zsh.
 set binary                      " Enable the editing of binary files.
 set ttyfast                     " Redraw windows when scrolling.
-set shell=/usr/local/bin/zsh	" Change the default shell to zsh.
 set backspace=indent,eol,start  " Correct the backspace behavior.
