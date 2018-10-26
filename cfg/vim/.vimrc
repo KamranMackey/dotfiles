@@ -10,22 +10,14 @@ if has('vim_starting')
 endif
 
 """ -------------------------------
-""" Basic Settings
+""" Basic & Visual Settings
 """ -------------------------------
 set number                      " Enable line numbers.
 set ruler                       " Enable the bottom bar line/column ruler.
 set hidden                      " Hide files in buffers instead of closing them.
+set fileformats=unix,dos,mac    " Set the file formats.
 syntax on                       " Enable syntax highlighting for files.
 filetype indent on              " Enable filetype-specific indent rules.
-
-""" -------------------------------
-""" Encoding & other misc. Settings
-""" -------------------------------
-set encoding=utf-8              " Set the main encoding to UTF-8.
-set fileencoding=utf-8          " Set the file encoding to UTF-8 as well.
-set binary                      " Allow binary files to be edited within vim.
-set ttyfast                     " Redraw windows when scrolling.
-set backspace=indent,eol,start  " Fix the backspace behavior.
 
 """ -------------------------------
 """ Tab Settings
@@ -35,3 +27,12 @@ set softtabstop=4               " Set soft tabs to 4.
 set shiftwidth=4                " Set the shift width to 4.
 set expandtab                   " Insert spaces instead of tabs. 
 
+""" -------------------------------
+""" Encoding & other misc. Settings
+""" -------------------------------
+set encoding=utf-8              " Set the main encoding to UTF-8.
+set fileencoding=utf-8          " Set the file encoding to UTF-8 as well.
+set binary                      " Enable the editing of binary files.
+set ttyfast                     " Redraw windows when scrolling.
+set shell=/usr/local/bin/zsh	" Change the default shell to zsh.
+set backspace=indent,eol,start  " Correct the backspace behavior.
