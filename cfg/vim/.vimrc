@@ -22,7 +22,7 @@ filetype indent on              " Enable filetype-specific indent rules.
 """ -------------------------------
 """ Tab Settings
 """ -------------------------------
-set tabstop=8                   " Set hard tabs to 8.
+set tabstop=4                   " Set hard tabs to 4.
 set softtabstop=4               " Set soft tabs to 4.
 set shiftwidth=4                " Set the shift width to 4.
 set expandtab                   " Insert spaces instead of tabs. 
