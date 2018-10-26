@@ -6,15 +6,15 @@
 """ Startup Settings
 """ ---------------------------------
 if has('vim_starting')
-    set nocompatible
+    set nocompatible			    " Disable compatibility with vi.
 endif
 
 """ ---------------------------------
 """ vim-plug Settings & Plugins
 """ ---------------------------------
-let g:plug_shallow=0
-call plug#begin('~/.vim/plugged')
-Plug 'ayu-theme/ayu-vim'
+let g:plug_shallow=0			    " When cloning plugins, do not use shallow clones.
+call plug#begin('~/.vim/plugged')	    " Begin vim-plug initialization.
+Plug 'ayu-theme/ayu-vim'		    " The Ayu colorscheme.
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'rust-lang/rust.vim'
