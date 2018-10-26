@@ -6,16 +6,16 @@
 """ Startup Settings
 """ -------------------------------
 if has('vim_starting')
-    set nocompatible			" Disable compatibility with vi.
+    set nocompatible                    " Disable compatibility with vi.
 endif
 
 """ -------------------------------
 """ vim-plug Settings & Plugins
 """ -------------------------------
-let g:plug_shallow = 0			" Do not create shallow clones.
-call plug#begin('~/.vim/plugged')	" Initialize vim-plug.
-Plug 'scrooloose/nerdtree'		" Add a better file system explorer to Vim.
-call plug#end()				" Load the plugins.
+let g:plug_shallow=0                    " Do not create shallow clones.
+call plug#begin('~/.vim/plugged')       " Initialize vim-plug.
+Plug 'scrooloose/nerdtree'              " Add a better file system explorer to Vim.
+call plug#end()                         " Load the plugins.
 
 """ -------------------------------
 """ NERDTree Configuration
